@@ -1,0 +1,74 @@
+body{
+  padding:0;
+  margin:0;
+}
+ul{
+	list-style:none;
+}
+#theTruthPlay{
+	position: absolute;
+	top: 100px;
+}
+#title{
+	position: absolute;
+	width:100%;
+	top:0;
+	left:0;
+	background-color:rgba(50,50,50,0.7);
+}
+#mainBody{
+	width:100%;
+	margin: 0;
+	background:url('../images/water.jpg');	
+	background-size:cover;
+}
+#musicControl{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	margin:0;
+	width:100%;
+}
+#musicPhoto{
+vertical-align:bottom
+}
+#buttonControl{
+	position: relative;
+	vertical-align:top;
+	display:inline-block;
+	color:#fff;}
+#rangeControl{
+	position: relative;
+	border-radius: 50px;
+	background:rgba(200,200,200,0.5);
+}
+#rangeNow{
+	height:100%;
+	width: 0%;
+	background-color: #ccffcc;
+}
+#title{
+	text-align: center;
+	color:#fff;
+}
+#songsList{
+	position:absolute;
+	overflow: auto;
+	color:#fff;
+	background: rgba(100,100,100,.7);
+	z-index: 9999;
+}
+#listTool{
+	width:100%;	
+	text-align: center;
+}
+.thePlayingNow{
+	color:#00ff00;
+}
+#canvas{
+   display: block;
+   cursor:crosshair;
+}
+#wordsOfSongs{
+	position:absolute;
+}

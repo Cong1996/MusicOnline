@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Music</title>
+		<meta charset='utf-8'>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<audio preload id="theTruthPlay" 
+		src=""></audio>
+		<div id="songsList">
+			<div id="listTool">
+				<span id="e_mail">✉</span>&nbsp;
+				<span id="closeList">✖</span>
+			</div>
+			<ul id="list" style="font-size:2.5vh;"></ul>
+		</div>
+		<div id="title"></div>
+		<div id="mainBody">
+			<canvas id="canvas" width='' height=''>
+			你的浏览器不支持canvas
+			</canvas>
+		</div>
+		<div id="musicControl">
+			<img id="musicPhoto" src="images/water50.jpg" width="100px" height="100px" />
+			<div id="buttonControl">
+					<span id="last" title="上一首">&lt;</span>&nbsp;
+					<span id="stopOrPlay">▶</span>&nbsp;
+					<span id="next" title="下一首">&gt;</span>&nbsp;
+					<span id="noVolume" title="静音">🔊</span>&nbsp;
+					<span id="reduceVolume" title="减少音量">-</span>&nbsp;
+					<span id="addVolume" title="增加音量">+</span>&nbsp;
+					<span id="showSongsList">▤</span>
+			</div>
+			<div id="rangeControl">
+				<div id="rangeNow"></div>
+			</div>
+		</div>
+		<div id="wordsOfSongs"></div>
+		 <script type="text/javascript" src="js/playerMain.js"></script> 
+	</body>
+</html>
