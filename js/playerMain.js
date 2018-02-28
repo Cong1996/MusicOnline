@@ -94,7 +94,7 @@ window.onresize=function(){
     setDivSize();
     play.rt_length=window.innerWidth/20;
     play.rt_array=[];
-    play.initAnimation();
+    play.initAnimation();//页面缩放会导致速度变快
 }
 var EventUtil={
   addHandler:function(element,type,handler){
