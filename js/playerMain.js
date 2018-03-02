@@ -7,12 +7,14 @@ window.requestAnimationFrame=window.requestAnimationFrame||
                              window.webkitrequestAnimationFrame||
                              window.mozrequestAnimationFrame||
                              window.msrequestAnimationFrame;
+
 var songs=[
-            {name:"ShakingHigh-アスノヨゾラ哨戒班",
-            src:"ShakingHigh-アスノヨゾラ哨戒班.mp3"},
+            {name:"IA-アスノヨゾラ哨戒班",
+            src:"IA-アスノヨゾラ哨戒班.mp3"},
             {name:"まじ娘-アイロニ",src:"まじ娘-アイロニ.mp3"},
             {name:"陈慧娴-月半小夜曲",src:"陈慧娴-月半小夜曲.mp3"},
             {name:"陈淑桦-梦醒时分",src:"陈淑桦-梦醒时分.mp3"},
+            {name:"陈奕迅-富士山下",src:"陈奕迅-富士山下.mp3"},
             {name:"陈奕迅-好久不见",src:"陈奕迅-好久不见.mp3"},
             {name:"陈展鹏、胡定欣-从未知道你最好",
             src:"陈展鹏、胡定欣-从未知道你最好.mp3"},
@@ -56,6 +58,7 @@ var songs=[
             {name:"周杰伦-稻香",src:"周杰伦-稻香.mp3"},
             {name:"周杰伦-晴天",src:"周杰伦-晴天.mp3"},
             ];
+
 var canvas=document.getElementById('canvas'),
     ctx=canvas.getContext('2d'),
     outCanvas=document.createElement('canvas'),
@@ -69,16 +72,17 @@ var canvas=document.getElementById('canvas'),
     rangeNow=document.getElementById('rangeNow'),
     audio=document.getElementById('theTruthPlay'),
     stopOrPlay=document.getElementById('stopOrPlay'),
-    sonsList=document.getElementById('songsList'),
+    songsList=document.getElementById('songsList'),
     listTool=document.getElementById('listTool'),
     list=document.getElementById('list'),
     wordsOfSongs=document.getElementById('wordsOfSongs'),
     play=null,
     nowIndex=0,
-    wW=window.innerWidth,
-    wH=window.innerHeight,
+    wW=document.documentElement.clientWidth,
+    wH=document.documentElement.clientHeight,
     height=Math.ceil(wH/15),
     varH=height*12.5,
+    songLyric=[],
     RAF = (function() {
     return window.requestAnimationFrame})(),
     linearColor=ctx.createLinearGradient(0,110,0,270);
@@ -87,14 +91,56 @@ var canvas=document.getElementById('canvas'),
     linearColor.addColorStop(0.75,"#FFCCCC");
     linearColor.addColorStop(1,"#CCCCFF");
 window.onresize=function(){
-    wW=window.innerWidth;
-    wH=window.innerHeight;
+    wW=document.documentElement.clientWidth;
+    wH=document.documentElement.clientHeight;
     height=Math.ceil(wH/15);
     varH=height*12.5;
     setDivSize();
-    play.rt_length=window.innerWidth/20;
+    play.rt_length=document.documentElement.clientWidth/20;
     play.rt_array=[];
     play.initAnimation();//页面缩放会导致速度变快
+}
+
+
+
+function setDivSize(){
+    canvas.setAttribute("width",wW);
+    canvas.setAttribute("height",wH);
+    outCanvas.width=canvas.width;
+    outCanvas.height=canvas.height/2;
+    title.style="font-size:"+height/2+'px';
+    listTool.style="font-size:"+height/2+'px';
+    mainBody.style.height=wH+'px';
+    musicControl.style.height=wH-varH+'px';
+    musicPhoto.style.width=musicPhoto.style.height=
+    wH-varH+'px';
+    songsList.style='width:'+wW/3+'px;height:'+
+                    (wH)+'px;left:'+(-wW/3)+'px;';
+    var sizeOfPhone=wW>wH?wW/25:wH/25;             
+    buttonControl.style="font-size:"+sizeOfPhone+'px;bottom:'+
+                 (sizeOfPhone/10)+'px';
+    wordsOfSongs.style="width:"+(wW)+'px;height:'+(wH/3-(wH-varH))+'px;bottom:'+
+                      +(wH-varH)+"px;font-size:"+sizeOfPhone+"px";
+    sizeOfPhone=wW>wH?5:20;
+    rangeControl.style='height:'+sizeOfPhone+'px;width:'+
+                 (wW-wH+varH)+'px;bottom:'+
+                 (wH-varH)/3+'px;left:'+
+                 (wH-varH)+'px';
+}
+//加载完成
+if (window.AudioContext) {
+ window.onload=function(){
+        play = new player();
+        audio.volume=0.5;
+        audio.src="songs/"+songs[0].src; 
+        play.playMusic(play.audio);
+        addSongsList();
+        changeMusicSrc();
+  }
+  }else {
+    // Web Audio API is not supported
+    // Alert the user
+    alert("抱歉，你的浏览器暂不支持该网页的功能。");
 }
 var EventUtil={
   addHandler:function(element,type,handler){
@@ -121,49 +167,15 @@ var EventUtil={
   getTarget:function(event){
     return event.target||event.srcElement;
   }
-};
-function setDivSize(){
-    canvas.setAttribute("width",wW);
-    canvas.setAttribute("height",wH);
-    outCanvas.width=canvas.width;
-    outCanvas.height=canvas.height/2;
-    title.style="font-size:"+height/2+'px';
-    listTool.style="font-size:"+height/2+'px';
-    mainBody.style.height=wH+'px';
-    musicControl.style.height=wH-varH+'px';
-    musicPhoto.style.width=musicPhoto.style.height=
-    wH-varH+'px';
-    songsList.style='width:'+wW/3+'px;height:'+
-                    wH+'px;left:'+(-wW/3)+'px;';
-    var sizeOfPhone=wW>wH?wW/25:wH/25;             
-    buttonControl.style="font-size:"+sizeOfPhone+'px;bottom:'+
-                 (sizeOfPhone/10)+'px';
-    sizeOfPhone=wW>wH?5:20;
-    rangeControl.style='height:'+sizeOfPhone+'px;width:'+
-                 (wW-wH+varH)+'px;bottom:'+
-                 (wH-varH)/3+'px;left:'+
-                 (wH-varH)+'px';
-    wordsOfSongs.style="width:"+wW+'px;height:'+(wH/2-(wH-varH))+'px;bottom:'+
-                       +(wH-varH)+"px;";
-}
-//加载完成
-window.onload=function(){
-        play = new player();
-        audio.volume=0.5;
-        audio.src="songs/"+songs[0].src; 
-        play.playMusic(play.audio);
-        addSongsList();
-        changeMusicSrc();
-}
+}; 
+
 EventUtil.addHandler(audio,'ended',function(){
         if(nowIndex==songs.length-1){
         nowIndex=-1;
         }          
         audio.src="songs/"+songs[++nowIndex].src;
         stopOrPlay.innerHTML="▨";
-        document.getElementsByClassName('thePlayingNow')[0].className="";
-        var thislist=document.getElementsByTagName('li');  
-        thislist[nowIndex].className='thePlayingNow';
+        changeMusicSrc();
         audio.play();
 });
 //音乐控制
@@ -226,6 +238,7 @@ EventUtil.addHandler(musicControl,"click",function(e){
         }
         break;
       case "showSongsList":
+        if(parseFloat(songsList.style.left)<0){
         var listWidth=parseFloat(songsList.style.left);
         var listOut=setInterval(function(){
           listWidth+=100;
@@ -235,7 +248,20 @@ EventUtil.addHandler(musicControl,"click",function(e){
             clearInterval(listOut);
           }
           songsList.style.left=listWidth+'px';
+        },10)}
+        else{
+            var listWidth=parseFloat(songsList.style.width),
+            listLeft=0;
+            var listOut=setInterval(function(){
+            listLeft+=100;
+            if(listLeft>listWidth){
+            listLeft=listWidth;
+            songsList.style.left=(-listLeft)+'px';
+            clearInterval(listOut);
+          }
+          songsList.style.left=(-listLeft)+'px';
         },10)
+        }
         break;
   }
 });
@@ -272,17 +298,11 @@ EventUtil.addHandler(list,'click',function(e){
     }
   }
   audio.src="songs/"+songs[nowIndex].src;  
-  title.innerHTML="<span>loading  "+songs[nowIndex].name+"</span>";
-  document.getElementsByClassName('thePlayingNow')[0].className="";
-  var thislist=document.getElementsByTagName('li');  
-  thislist[nowIndex].className='thePlayingNow';
-  audio.oncanplay=function(){
-           title.innerHTML="<span>Playing  "+songs[nowIndex].name+"</span>";
-            if(audio.paused){ 
-             stopOrPlay.innerHTML="▨";
-             audio.play();
-            }
-        }   
+  changeMusicSrc();
+  if(audio.paused){ 
+     stopOrPlay.innerHTML="▨";
+     audio.play();
+    }
 });
 
 function changeMusicSrc(){//歌曲变换时触发
@@ -290,9 +310,21 @@ function changeMusicSrc(){//歌曲变换时触发
   document.getElementsByClassName('thePlayingNow')[0].className="";
   var thislist=document.getElementsByTagName('li');  
   thislist[nowIndex].className='thePlayingNow';
+  wordsOfSongs.textContent = songs[nowIndex].name;
+  songLyric=[];
+  play.getLyric();
+  audio.ontimeupdate = function(e) {
+    //遍历所有歌词，看哪句歌词的时间与当然时间吻合
+  for (var i = 0, l = songLyric.length; i < l; i++) {
+        if ((this.currentTime+1.5) /*当前播放的时间*/ > songLyric[i][0]) {
+            //显示到页面
+            wordsOfSongs.textContent = songLyric[i][1];
+        };
+  };
   audio.oncanplay=function(){
            title.innerHTML="<span>Playing  "+songs[nowIndex].name+"</span>";
         }
+  };
 }
 function addSongsList(){//歌单
   var ol=document.getElementById('list');
@@ -307,46 +339,9 @@ function addSongsList(){//歌单
   ol.setAttribute('id','list');
   songsList.appendChild(ol);
 }
-function animate() {
-    var songs=play.songs,
-        nowIndex=play.nowIndex,
-        analyser=play.analyser,
-        rt_length=play.rt_length,
-        rt_array=play.rt_array;
-    if (!songs[nowIndex].decoding) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      octx.clearRect(0, 0, canvas.width, canvas.height);
-      //出来的数组为8bit整型数组，即值为0~256，整个数组长度为1024，即会有1024个频率，只需要取部分进行显示
-      var array_length = analyser.frequencyBinCount;
-      var array = new Uint8Array(array_length);
-      analyser.getByteFrequencyData(array); //将音频节点的数据拷贝到Uin8Array中
-      //数组长度与画布宽度比例
-      var bili = array_length / canvas.width;
-      for (var i = 0; i < rt_array.length; i++) {
-        var rt = rt_array[i];
-        //根据比例计算应该获取第几个频率值，并且缓存起来减少计算
-        rt.index = ('index' in rt) ? rt.index : ~~(rt.x * bili);
-        rt.update(array[rt.index]);
-      }
-      draw();
-    } else {
-      console.log("音频解码中...")
-    }
-    RAF(animate);
-  }
 
-  //制造半透明投影
-  function draw() {
-    ctx.drawImage(outCanvas, 0, 0);
-    ctx.save();
-    ctx.translate(0, canvas.height / 2);
-    ctx.rotate(Math.PI);
-    ctx.scale(-1, 1);
-    ctx.drawImage(outCanvas, 0, -canvas.height / 2);
-    ctx.restore();  
-    ctx.fillStyle = 'rgba(0, 0, 0, .7)';
-    ctx.fillRect(0, canvas.height/ 2, canvas.width, canvas.height / 2);
-  } 
+//制造半透明投影
+
 
 //禁止滚动
 var scrollFunc=function(e){
@@ -356,58 +351,15 @@ var scrollFunc=function(e){
  }else if(e.detail){//Firefox
   event.returnValue=false;
  }
- }
+}
  /*注册事件*/
- if(document.addEventListener){
+if(document.addEventListener){
  document.addEventListener('DOMMouseScroll',scrollFunc,false);
- }//W3C
+}//W3C
  window.onmousewheel=document.onmousewheel=scrollFunc;
 
-//播放器对象
-var player = function(){
-        this.songs=songs;
-        this.nowIndex=nowIndex;
-        this.rt_array=[]; //用于存储柱形条对象
-        this.rt_length=canvas.width/20;
-        this.AC=new AudioContext();
-        this.audio=audio;
-        this.audioSource=null;
-        this.analyser=this.AC.createAnalyser();
-        this.gainnode=this.AC.createGain();
-        this.gainnode.gain.value=1;
-        this.source=null;
-        this.loop;
-    };
-player.prototype={
-    playMusic:function(arg){
-        this.audioSource=this.audioSource||this.AC.createMediaElementSource(arg);
-        this.source=this.audioSource;
-        this.source.connect(this.analyser);
-        this.analyser.connect(this.gainnode);
-        this.gainnode.connect(this.AC.destination);
-        rangeNow.style="width:0;";
-        this.initAnimation();
-        this.loop=setInterval(this.getPross,500);
-    },
-    initAnimation:function(){ //动画初始化，获取analyserNode里的音频buffer
-        var aw=canvas.width/this.rt_length,//每个柱形条的宽度，及柱形条宽度+间隔
-            w=aw-3;
-        for(var i=0;i<this.rt_length;i++){
-            this.rt_array.push(new Retangle(w,5,i*aw,canvas.height/2));
-        }
-        animate();
-    },
-    getPross:function(){
-      if(audio.currentTime===audio.duration)
-        clearInterval(this.loop);
-        var percent=audio.currentTime/audio.duration;
-        rangeNow.style="width:"+(percent*100).toFixed(2)+"%";
-    }
-};
-
-
-  // 音谱条对象 
- var Retangle=function(w, h, x, y) {
+// 音谱条对象 
+var Retangle=function(w, h, x, y) {
     this.w = w;
     this.h = h; // 小白块高度
     this.x = x;
@@ -417,9 +369,8 @@ player.prototype={
     this.dy = y; // 小白块位置
     this.num = 0;
   };
-
-  Retangle.prototype={
-    update: function(power) {
+Retangle.prototype={
+  update: function(power){
     this.power = power;
     this.num = 0;//小方块间隔
     //更新小白块的位置，如果音频条长度高于白块位置，则白块位置则为音频条高度，否则让小白块下降
@@ -445,3 +396,123 @@ player.prototype={
     octx.fillRect(this.x, ~~this.dy, this.w, this.h);
   }
 };   
+
+//播放器对象
+var player = function(){
+        this.rt_array=[]; //用于存储柱形条对象
+        this.rt_length=canvas.width/20;
+        this.AC=new AudioContext();
+        this.audio=audio;
+        this.audioSource=null;
+        this.analyser=this.AC.createAnalyser();
+        this.gainnode=this.AC.createGain();
+        this.gainnode.gain.value=1;
+        this.source=null;
+        this.loop;
+    };
+player.prototype={
+playMusic:function(arg){
+        this.audioSource=this.audioSource||this.AC.createMediaElementSource(arg);
+        this.source=this.audioSource;
+        this.source.connect(this.analyser);
+        this.analyser.connect(this.gainnode);
+        this.gainnode.connect(this.AC.destination);
+        rangeNow.style="width:0;";
+        this.initAnimation();
+        this.loop=setInterval(this.getPross,500);
+    },
+initAnimation:function(){ //动画初始化，获取analyserNode里的音频buffer
+        var aw=canvas.width/this.rt_length,//每个柱形条的宽度，及柱形条宽度+间隔
+            w=aw-3;
+        for(var i=0;i<this.rt_length;i++){
+            this.rt_array.push(new Retangle(w,5,i*aw,canvas.height/2));
+        }
+        this.animate();
+    },
+getPross:function(){
+      if(audio.currentTime===audio.duration)
+        clearInterval(this.loop);
+        var percent=audio.currentTime/audio.duration;
+        rangeNow.style="width:"+(percent*100).toFixed(2)+"%";
+    },
+getLyric:function(){//获取歌词文件 
+    var url=songs[nowIndex].name;
+    url="lrc/"+url+'.lrc';   
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    var lyric;
+    request.responseType = 'text';
+    request.onload = function() {
+       lyric = request.response;  
+       songLyric=play.getParseLyric(lyric);
+    };  
+    request.send();
+    },
+getParseLyric:function(text){//整理歌词格式
+    var lines = text.split('\n'),
+        //用于匹配时间的正则表达式，匹配的结果类似[xx:xx.xx]
+        pattern = /\[\d{2}:\d{2}.\d{2}\]/g,
+        //保存最终结果的数组
+        result = [];
+    //去掉不含时间的行
+    while (!pattern.test(lines[0])) {
+        lines = lines.slice(1);
+    };
+    //上面用'\n'生成生成数组时，结果中最后一个为空元素，这里将去掉
+    lines[lines.length - 1].length === 0 && lines.pop();
+    lines.forEach(function(v /*数组元素值*/ , i /*元素索引*/ , a /*数组本身*/ ) {
+        //提取出时间[xx:xx.xx]
+        var time = v.match(pattern),
+            //提取歌词
+            value = v.replace(pattern, '');
+        //因为一行里面可能有多个时间，所以time有可能是[xx:xx.xx][xx:xx.xx][xx:xx.xx]的形式，需要进一步分隔
+        time.forEach(function(v1, i1, a1) {
+            //去掉时间里的中括号得到xx:xx.xx
+            var t = v1.slice(1, -1).split(':');
+            //将结果压入最终数组
+            result.push([parseInt(t[0], 10) * 60 + parseFloat(t[1]), value]);
+        });
+    });
+    //最后将结果数组中的元素按时间大小排序，以便保存之后正常显示歌词
+    result.sort(function(a, b) {
+        return a[0] - b[0];
+    });
+    return result;  
+  },
+animate:function() {//神奇，不知道为什么不属于play
+    var analyser=play.analyser,
+        rt_length=play.rt_length,
+        rt_array=play.rt_array;
+    if (!songs[nowIndex].decoding) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      octx.clearRect(0, 0, canvas.width, canvas.height);
+      //出来的数组为8bit整型数组，即值为0~256，整个数组长度为1024，即会有1024个频率，只需要取部分进行显示
+      var array_length = analyser.frequencyBinCount;
+      var array = new Uint8Array(array_length);
+      analyser.getByteFrequencyData(array); //将音频节点的数据拷贝到Uin8Array中
+      //数组长度与画布宽度比例
+      var bili = array_length / canvas.width;
+      for (var i = 0; i < rt_array.length; i++) {
+        var rt = rt_array[i];
+        //根据比例计算应该获取第几个频率值，并且缓存起来减少计算
+        rt.index = ('index' in rt) ? rt.index : ~~(rt.x * bili);
+        rt.update(array[rt.index]);
+      }
+      play.draw();
+    } else {
+      console.log("音频解码中...")
+    }
+    RAF(play.animate);
+  },
+draw:function() {
+    ctx.drawImage(outCanvas, 0, 0);
+    ctx.save();
+    ctx.translate(0, canvas.height / 2);
+    ctx.rotate(Math.PI);
+    ctx.scale(-1, 1);
+    ctx.drawImage(outCanvas, 0, -canvas.height / 2);
+    ctx.restore();  
+    ctx.fillStyle = 'rgba(0, 0, 0, .7)';
+    ctx.fillRect(0, canvas.height/ 2, canvas.width, canvas.height / 2);
+  } 
+};

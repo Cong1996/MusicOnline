@@ -4,6 +4,7 @@ body{
 }
 ul{
 	list-style:none;
+  margin:0;
 }
 #theTruthPlay{
 	position: absolute;
@@ -71,4 +72,6 @@ vertical-align:bottom
 }
 #wordsOfSongs{
 	position:absolute;
+	text-align: center;
+	color:#fff;
 }
