@@ -1,0 +1,101 @@
+*{margin:0;padding:0;}
+body{
+	background:url('../images/ali.jpg') no-repeat;
+}
+ul{
+	list-style: none;
+	font-size:15px;
+	color:rgba(200,30,0,1);
+}
+#signInNameExisted,#signInWrongNumber,#signInEmptyInput{
+	display: none;
+}
+
+input{
+	border:none;
+	background:none;
+	outline:none;
+	height: 30px;
+	font-size: 20px;
+}
+input::-webkit-input-placeholder{
+	font-size:20px;
+}
+button{
+	outline: none;
+}
+#loginPage{
+	position:absolute;
+	
+	width:500px;
+	height:500px;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	border-radius:5%;
+	box-shadow:5px 5px 5px 1px #666;
+	background-color: rgba(256,256,256,.9);
+}
+#buttonList{
+	margin:50px;
+}
+.login_button{
+	display: inline-block;
+	width:100px;
+	height:50px;
+	vertical-align: middle;
+	text-align:center;
+	color:#999;
+	font-size:30px;
+}
+.buttonActive{
+	border-bottom:2px solid red;
+}
+#signInForm,#loginForm{
+	margin:50px;
+	padding:10px;
+	background-color:rgba(247,247,247,1);
+	border:#999 solid 1px;
+	border-radius:10px;
+}
+
+#signInForm{
+/*	animation: displaynone 2s linear;*/
+	animation-fill-mode:forwards; 
+}
+#loginForm{
+	opacity: 0;
+	display:none;
+/*	animation: displayblock 2s linear;*/
+	animation-fill-mode:forwards; 
+}
+#signInForm>div,#loginForm>div{
+	font-size:30px;
+	vertical-align: middle;
+}
+#signInNow,#loginNow{
+	width: 100px;
+	background-color:rgba(200,255,200,1);
+	color:#666;
+	border-radius: 10px;
+	font-size: 30px;
+}
+#loginNow{
+	background-color: rgba(150,150,255,1);
+}
+@keyframes displaynone{
+	From{
+		opacity: 1;
+	}
+	To{
+		opacity: 0;
+	}
+}
+@keyframes displayblock{
+	From{
+		opacity:0;
+	}
+	To{
+		opacity: 1;
+	}
+}

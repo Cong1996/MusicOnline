@@ -1,0 +1,36 @@
+*{
+	padding:0;
+	margin:0;
+}
+body{
+	background:url('../images/huowu.jpg') no-repeat;
+}
+#mainBody{
+	position:absolute;
+	width:700px;
+	height:500px;
+	background-color: rgba(256,256,256,.8);
+	left:50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+}
+#theHelp{
+	position:absolute;
+	left:50%;
+	top:15%;
+	transform:translateX(-50%);
+	color:#00ff00;
+	padding:25px;
+	background-color:rgba(40,40,40,.8);
+	border:2px dotted #fff;
+	font-size:15px;
+}
+#theMenu{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+}
+#updateFileToMySql{
+
+}

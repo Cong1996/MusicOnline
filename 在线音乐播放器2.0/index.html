@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>网页评论功能</title>
+		<link rel="stylesheet" href="css/main.css"/>
+	</head>
+	<body>
+		<div id="loginPage">
+			<div id="buttonList">
+				<div id="signIn" class="login_button buttonActive">注册</div>
+				<div id="login" class="login_button">登陆</div>
+			</div>
+			<div id="signInForm">
+				<div>&#9786<input id="signInUserNameInput" type="text" placeholder="你的昵称"/>
+				</div>
+				<div>&#65533<input id="signInUserPasswordInput" type="password" placeholder="你的密码"/></div>
+				<div id="signInUserPhoneInputDiv">&#9743<input id="signInUserPhoneInput" type="text" placeholder="你的手机号码"/></div>
+				<button id="signInNow">注册</button>
+				<ul id="signInWarningList">
+					<li id="signInEmptyInput">部分选项为空</li>
+					<li id="signInNameExisted">昵称已存在</li>
+					<li id="signInWrongNumber">电话格式不正确</li>
+				</ul>
+			</div>
+			<div id="loginForm">
+				<div>&#9786<input id="loginUserNameInput" type="text" placeholder="你的昵称"/></div>
+				<div>&#65533<input id="loginUserPasswordInput" type="password" placeholder="你的密码"/></div>
+				<button id="loginNow">登录</button>
+			</div>
+		</div>
+		<script src="js/login.js"></script>
+	</body>
+</html>

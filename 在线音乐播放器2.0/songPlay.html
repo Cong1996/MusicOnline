@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>空闲状态</title>
+		<link rel="stylesheet" href="css/songPlay.css"/>
+	</head>
+	<body>
+		<audio id="song" src=""></audio>
+		<div id="songList">
+			<div id="songListTool">X</div>
+			<div id="songListContent">
+				<div id="songListMain">
+					<ul id="list">
+					</ul>
+				</div>
+				<div id="songListLyric"></div>
+			</div>
+		</div>
+		<div id="songProcess">
+			<img id="showList" src="images/list.png" class='btn' width="30px" height="30px"/>
+			<img id="pre" src="images/pre.png" class='btn' width="30px" height="30px"/>
+			<img id="play" src="images/play.png" class='btn' width="40px" height="40px"/>
+			<img id="next" src="images/next.png" class='btn' width="30px" height="30px"/>
+			<div id="theProcessArea">
+				<div id="theProcessNow"></div>
+				<span id="nowTime">00:00</span>&nbsp;&frasl;
+				<span id="allTime">00:00</span>
+			</div>
+
+		</div>
+		<div id="mainBody">
+			<div id="mainBodyHead">
+				<span id="userName" style="vertical-align: middle;">田野一根葱</span>	
+				<img id="songPhoto" src="images/微信图片_20180316141945.jpg" alt="" width="70px" height="70px" style="border-radius: 50%;vertical-align: middle;" />
+			</div>
+			<div id="mainBodyPhotoArea">
+				<div id="photo">
+					<img id="mainBodySongPhoto" src="images/头像.png" alt="" width="300px" height="300px" style="border-radius: 10%;border:5px solid #000;" />
+				</div>
+				<div id="commontArea">		
+					<div id="sendCommontArea">
+						<p style="font-size:30px;border-bottom:3px solid red;">评论</p>
+						<div id="sendCommont">
+							<img id="userPhoto" src="images/微信图片_20180316141945.jpg" width="70px" height="70px"/>
+							<textarea id="commont" placeholder="尽情发表你的感想"></textarea>
+							<button id="finishCommont">完成</button>
+						</div>
+					</div>
+					<div id="commontListArea">
+						<ul id="commontList">
+<!-- 							<li class="commontListLi">
+									<div class="commontListUser">
+										<img class="commontListUserPhoto" src="images/微信图片_20180316141945.jpg" />
+										<span class="commontListUserName">name</span>
+									</div>
+								<textarea class="commontContent" readonly="readonly">oko</textarea>
+							</li> -->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<img id="backgroundLyric" src="images/ali.jpg"></img>	
+				<div id="mainBodyLyricArea">
+				<p id="songTitle">当前播放：暂无</p>
+				<p id="singerName">歌手：暂无</p>
+				<div id="showLyricArea">
+					<p style="text-align:left;font-size: 25px;color:#00ff00">歌词:</p>
+					<ul id="showLyric"></ul>
+				</div>
+				</div>
+			
+		</div>
+		
+		<script src="js/songPlay.js"></script>
+	</body>
+</html>
