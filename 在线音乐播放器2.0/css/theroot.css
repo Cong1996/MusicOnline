@@ -3,11 +3,15 @@
 	margin:0;
 }
 body{
+	font-family: "宋体";
 	background:url('../images/huowu.jpg') no-repeat;
+}
+button{
+	width:100px;
 }
 #mainBody{
 	position:absolute;
-	width:700px;
+	width:50%;
 	height:500px;
 	background-color: rgba(256,256,256,.8);
 	left:50%;
@@ -33,4 +37,17 @@ body{
 }
 #updateFileToMySql{
 
+}
+#songList{
+	width:20%;
+	overflow:auto;
+	color:#fff;
+	background:rgba(0,0,0,.8);
+}
+.theSong{
+	border-bottom: 1px solid #ddd;
+	padding:10px;
+}
+.theSong:hover{
+	color:#00ff00;
 }

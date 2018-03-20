@@ -1,8 +1,31 @@
-*{margin:0;padding:0;box-sizing: border-box;font-family: "宋体";}
+*{margin:0;padding:0;box-sizing: border-box;font-family:"仿宋";}
 ul,li{
 	list-style: none;
 	padding:2px 0;
 }
+::-webkit-scrollbar  
+{  
+    width: 5px;  /*滚动条宽度*/
+    height: 16px;  /*滚动条高度*/
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  
+    border-radius: 10px;  /*滚动条的背景区域的圆角*/
+    background:rgba(150,150,150,.7)/*滚动条的背景颜色*/  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  /*滚动条的圆角*/
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    background-color: #fff;  /*滚动条的背景颜色*/
+}  
+
+
 #songList{
 	display: none;
 	position:absolute;
@@ -19,6 +42,9 @@ ul,li{
 	height:350px;
 	padding:20px;
 }
+ul>li:hover{
+	color:#00eeff;
+}
 #songListMain{
 	font-size:15px;
 	color:#fff;
@@ -33,8 +59,8 @@ ul,li{
 	font-size:0;
 	padding:0 20px;
 	bottom:0;
-	width:100%;
 	height:50px;
+	padding-bottom:5px;
 	background:rgba(0,0,0,.7);
 }
 #songProcess{
@@ -47,10 +73,12 @@ ul,li{
 .btn:hover{
 	background-color: #aaa;
 }
+#volumeControl{
+	outline: none;
+}
 #theProcessArea{
 	font-size: 20px;
 	display: inline-block;
-	width:1300px;
 	height:3px;
 	border-radius:50px;
 	background:rgba(150,150,150,.7);
@@ -101,15 +129,17 @@ ul,li{
 	vertical-align: middle;
 	width:50px;
 	height:50px;
-	border-radius:50%;
+	border-radius:10px;
 	border:2px solid #000;
 }
 .commontListUserName{
-	vertical-align: middle;
+	padding-left: 10px;
+	vertical-align: bottom;
 	font-size: 25px;
 }
 .commontTime{
 	color:#aaa;
+	vertical-align: bottom;
 	font-size:15px;
 }
 .commontContent{
@@ -121,17 +151,20 @@ ul,li{
 	font-size: 15px;
 }
 #sendCommont{
-
+	clear:both;
 }
 #userPhoto{
+	float: left;
+	margin-left:10px;
 	vertical-align: top;
 	border-radius:10px;
 	border:2px solid #000;
 }
 #commont{
-	margin-left:30px;
+	float: left;
+	margin-left:10px;
 	vertical-align: top;
-	width:400px;
+	width:80%;
 	height:100px;
 	outline:none;
 	resize:none;
@@ -172,4 +205,47 @@ ul,li{
 .theLyricShowNow{
 	font-size: 25px;
 	color:#00ff00;
+}
+#userPower{
+	position:absolute;
+	width:70px;
+	height:70px;
+	text-align:center;
+	top:0;
+	opacity: 0;
+	right: 20px;
+	line-height: 70px;
+	border-radius:50%;
+	color:#00ff00;
+	background:rgba(0,0,0,.7);
+}
+#searchSongArea{
+	position: absolute;
+	width: 40%;
+	vertical-align: middle;
+	text-align: center;
+}
+#inputSongOrSingerName{
+	vertical-align: middle;
+	border-radius: 20px;
+	width: 40%;
+	outline: none;
+	font-size:20px;
+	font-weight: bold;
+}
+#searchButton{
+	vertical-align: middle;
+	border-radius:50%;
+	background-color:#999;
+}
+#searchButton:hover{
+	background:rgba(200,200,200,1);
+}
+#showResultSongList{/*展示搜索结果*/
+	display:none;
+	width: 50%;
+	height:200px;
+	background:rgba(250,250,250,.9);
+	left:50%;
+	transform: translateX(50%);
 }

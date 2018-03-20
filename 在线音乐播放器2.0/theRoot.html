@@ -6,18 +6,20 @@
 	<link rel="stylesheet" href="css/theroot.css"/>
 </head>
 <body>
+	<div id="songList"></div>
 	<div id="mainBody">
-	<div id="theHelp">
+		<div id="theHelp">
 		<ol>
 			<li>点击左侧按钮选择文件</li>
 			<li>点击右侧按钮提交歌曲</li>
+			<li>点击左侧歌单可以从数据库删除歌曲</li>
 		</ol>
-	</div>
-	<div id="theMenu">
+		</div>
+		<div id="theMenu">
 		<input id="musicFiles" type="file" multiple/>
 		<button id="updateFileToMySql">提交歌曲</button>
 		<button id="enterPlay">进入使用界面</button>
-	</div>
+		</div>
 	</div>
 	<script src="js/Update.js"></script>
 </body>

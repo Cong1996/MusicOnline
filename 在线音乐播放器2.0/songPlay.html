@@ -5,7 +5,7 @@
 		<title>空闲状态</title>
 		<link rel="stylesheet" href="css/songPlay.css"/>
 	</head>
-	<body>
+	<body ondragstart="return false;">
 		<audio id="song" src=""></audio>
 		<div id="songList">
 			<div id="songListTool">X</div>
@@ -18,10 +18,14 @@
 			</div>
 		</div>
 		<div id="songProcess">
-			<img id="showList" src="images/list.png" class='btn' width="30px" height="30px"/>
-			<img id="pre" src="images/pre.png" class='btn' width="30px" height="30px"/>
-			<img id="play" src="images/play.png" class='btn' width="40px" height="40px"/>
-			<img id="next" src="images/next.png" class='btn' width="30px" height="30px"/>
+			<div style="width: 25%;display: inline-block;text-align: center;">
+				<img id="showList" src="images/list.png" class='btn' width="30px" height="30px"/>
+				<img id="pre" src="images/pre.png" class='btn' width="30px" height="30px"/>
+				<img id="play" src="images/play.png" class='btn' width="40px" height="40px"/>
+				<img id="next" src="images/next.png" class='btn' width="30px" height="30px"/>
+				<img id="volume" src="images/volume.png" class='btn' width="30px" height="30px"/>
+				<input id="volumeControl" value=".5" type="range" min="0" max="1" step=".1"/>
+			</div>
 			<div id="theProcessArea">
 				<div id="theProcessNow"></div>
 				<span id="nowTime">00:00</span>&nbsp;&frasl;
@@ -31,8 +35,16 @@
 		</div>
 		<div id="mainBody">
 			<div id="mainBodyHead">
+					<div id="searchSongArea">
+						<input id="inputSongOrSingerName" type="text" placeholder="输入歌曲或歌手的名字" />
+						<img id="searchButton" src="images/search.png" width="50px" height="50px"/>
+						<div id="showResultSongList"></div>
+					</div>
 				<span id="userName" style="vertical-align: middle;">田野一根葱</span>	
-				<img id="songPhoto" src="images/微信图片_20180316141945.jpg" alt="" width="70px" height="70px" style="border-radius: 50%;vertical-align: middle;" />
+				<img id="songPhoto" src="images/微信图片_20180316141945.jpg" alt="" width="70px" height="70px" style="border-radius: 50%;vertical-align: middle;"/>
+				<div id="userPower">
+					退出
+				</div>
 			</div>
 			<div id="mainBodyPhotoArea">
 				<div id="photo">
