@@ -4,7 +4,7 @@
 }
 body{
 	font-family: "宋体";
-	background:url('../images/huowu.jpg') no-repeat;
+	background:url('../images/pikaqiu.jpg') no-repeat center fixed;
 }
 button{
 	width:100px;
@@ -39,6 +39,7 @@ button{
 
 }
 #songList{
+	float:right;
 	width:20%;
 	overflow:auto;
 	color:#fff;

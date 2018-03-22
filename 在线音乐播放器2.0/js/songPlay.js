@@ -72,9 +72,10 @@
 			showLyricArea=document.getElementById('showLyricArea'),
 			mainBodySongPhoto=document.getElementById('mainBodySongPhoto');
 		volumeControl.value=.5;
+		song.volume=.5;
 		mainBodySongPhoto.src="singer/"+songArray[nowIndex]["singer_name"]+".jpg";
 		document.getElementById('backgroundLyric').src="singer/"+songArray[nowIndex]["singer_name"]+".jpg";
-		document.getElementsByTagName('title')[0].innerText=songArray[nowIndex]["song_name"];
+		document.title=songArray[nowIndex]["song_name"];
 		songTitle.innerHTML="当前播放：<span>"+songArray[nowIndex]["song_name"]+"</span>";
 		singerName.innerHTML="歌手：<span>"+songArray[nowIndex]["singer_name"]+"</span>";
 		getLyric("lrc/"+songArray[nowIndex]["singer_name"]+"-"+songArray[nowIndex]["song_name"]);
@@ -110,8 +111,6 @@
 			lyricArray=lyricArray.slice(1);
 		}
 		for(var item in lyricArray){
-			if(lyricArray[item]=="")
-				continue;
 			var li=document.createElement('li'),
 				v=lyricArray[item],
 				time=v.match(pattern),
