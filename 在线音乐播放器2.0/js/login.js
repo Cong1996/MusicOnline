@@ -1,5 +1,4 @@
-var userArray=[],
-	signInUserNameInput=document.getElementById('signInUserNameInput'),
+var signInUserNameInput=document.getElementById('signInUserNameInput'),
 	signInUserPasswordInput=document.getElementById('signInUserPasswordInput'),
 	signInUserPhoneInput=document.getElementById('signInUserPhoneInput'),
 	signInNameExisted=document.getElementById('signInNameExisted'),
@@ -12,11 +11,19 @@ var userArray=[],
 	loginUserPasswordInput=document.getElementById('loginUserPasswordInput');
 	//读取用户信息，便于对比昵称是否被占用
 window.onload=function(){
-	var xhr= new XMLHttpRequest();
-	xhr.open("get","php/读取用户数据.php",false);
-	xhr.send(null);
-	userArray=JSON.parse(xhr.responseText);
 };
+	function getServerDate(){//获取服务器时间
+    var xhr = null;
+    if(window.XMLHttpRequest){
+      xhr = new window.XMLHttpRequest();
+    }else{ // ie
+      xhr = new ActiveObject("Microsoft")
+    }
+    xhr.open("GET","/",false)//false不可变
+    xhr.send(null);
+    var date = xhr.getResponseHeader("Date");
+    return new Date(date);
+	}
 buttonList.addEventListener('click',function(e){//监听用户使用注册还是登录功能
 	var target=e.target,
 	loginForm=document.getElementById('loginForm'),
@@ -44,13 +51,13 @@ buttonList.addEventListener('click',function(e){//监听用户使用注册还是
 });
 //注册表单相关
 var nameExistedOrNot=function(){//监听昵称是否被占用
-	var value=signInUserNameInput.value;
-	var existed=false;
-	for(var item in userArray){
-		if(userArray[item]["user_name"]==value){
-			existed=true;
-		}
-	}
+	var value=signInUserNameInput.value,
+		xhr=new XMLHttpRequest(),
+		existed=false;
+	xhr.open("post","php/读取用户数据.php",false);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send("userName="+value);
+	existed=xhr.responseText;
 	if(existed){
 		signInNameExisted.style="display:block";
 	}
@@ -72,29 +79,35 @@ signInUserPhoneInput.addEventListener('blur',function(){//监听电话号码格�
 
 var signInNowEvent=function(){//向数据库发送注册信息
 	if(signInUserNameInput.value&&signInUserPasswordInput.value&&signInUserPhoneInput.value){
-	var value=signInUserNameInput.value;
-	var existed=false;
-		for(var item in userArray){
-		if(userArray[item]["user_name"]==value){
-			existed=true;
-		}
-		}
+	var value=signInUserNameInput.value,
+		xhr=new XMLHttpRequest(),
+		existed=false;
+		xhr.open("post","php/读取用户数据.php",false);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("userName="+value);
+		existed=xhr.responseText;
 		if(existed){
 		signInNameExisted.style="display:block";
 		}
 		else{
+		if(signInWrongNumber.style.display=="none"){
 		signInNameExisted.style="display:none";
 		signInEmptyInput.style="display:none";
 		var xhr = new XMLHttpRequest(),
 			userName=loginUserNameInput.value,
-			userPassword=loginUserPasswordInput.value;;
+			userPassword=loginUserPasswordInput.value,
+			dateTime=getServerDate().toLocaleString();;
 		xhr.open('post','php/注册用户.php',false);
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send("userName="+signInUserNameInput.value+"&userPassword="+
 				signInUserPasswordInput.value+"&userPhone="+
-				signInUserPhoneInput.value);
+				signInUserPhoneInput.value+"&registerTime="+dateTime);
 		loginSuccess(signInUserNameInput.value,signInUserPasswordInput.value,2);
 		signInNow.removeEventListener('click',signInNowEvent);
+		}
+		else{
+
+		}
 		}
 	}
 	else{
@@ -107,24 +120,20 @@ var loginNowEvent=function(){
 	var userName=loginUserNameInput.value,
 		userPassword=loginUserPasswordInput.value;
 	if(userName!=""&&userPassword!=""){
-	var xhr=new XMLHttpRequest,
+	var xhr=new XMLHttpRequest(),
 		value=false;
-	xhr.open("get","php/读取用户数据.php",false);
-	xhr.send(null);
-	userArray=JSON.parse(xhr.responseText);
-	for(var item in userArray){
-		if(userArray[item]["user_name"]==userName&&userArray[item]["user_password"]==userPassword){
-			value=true;
-		}
-	}
+	xhr.open("post","php/验证用户数据.php",false);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send("userName="+userName+"&userPassword="+userPassword);
+	value=xhr.responseText;
 	if(value){
-		if(userName=="Cong"){
-			loginSuccess(userName,userPassword,1);
-		}
-		else{
-			loginSuccess(userName,userPassword,2);
-		}
-		loginNow.removeEventListener('click',loginNowEvent);
+		 if(userName=="Cong"){
+		 	loginSuccess(userName,userPassword,1);
+		 }
+		 else{
+		 	loginSuccess(userName,userPassword,2);
+		 }
+		 loginNow.removeEventListener('click',loginNowEvent);
 	}
 	else{
 		alert("用户不存在或密码不正确");

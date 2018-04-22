@@ -1,10 +1,12 @@
 	var mainBodyPhotoArea=document.getElementById('mainBodyPhotoArea'),
 		mainBodyLyricArea=document.getElementById('mainBodyLyricArea'),
+		body=document.body;
 		showList=document.getElementById('showList'),
 		pre=document.getElementById('pre'),
 		play=document.getElementById('play'),
 		next=document.getElementById('next'),
 		songProcess=document.getElementById('songProcess'),
+		theRealProcessArea=document.getElementById('theRealProcessArea'),
 		songArray=[],
 		list= document.getElementById('list'),
 		nowIndex=0,
@@ -14,7 +16,11 @@
 		finishCommont=document.getElementById('finishCommont'),
 		volumeControl=document.getElementById('volumeControl'),
 		songPhoto=document.getElementById('songPhoto'),
-		userPower=document.getElementById('userPower');
+		inputSongOrSingerName=document.getElementById('inputSongOrSingerName'),
+		searchButton=document.getElementById('searchButton');
+		userPower=document.getElementById('userPower'),
+		phoneList=document.getElementById('phoneList')
+		model=1;
 	window.onload=function(){
 		if(localStorage.getItem("userName")==""){
 			window.location.href="index.html";
@@ -26,25 +32,34 @@
 		songArray=JSON.parse(xhr.responseText);
 		song.volume=.5;
 		songArray.sort(compare);
-		document.getElementById('userName').innerHTML=localStorage.getItem("userName")||"田野一根葱";
+		document.getElementById('userName').innerText=localStorage.getItem("userName")||"田野一根葱";
 		addSongToList();
+		song.preload=true;
+		song.metadata=true;
 	};
 	window.onresize=setSize;
 	function setSize(){
 		var wW=window.innerWidth,
 			wH=window.innerHeight,
-			theProcessArea=document.getElementById('theProcessArea'),
-			commont=document.getElementById('commont');
-		theProcessArea.style.width="75%";
+			commont=document.getElementById('commont'),
+			theRealProcessArea=document.getElementById('theRealProcessArea'),
+			loadingDiv=document.getElementById('loading');
+		loadingDiv.style.height=(wH)+"px";
+		loadingDiv.style.width=(wW)+"px";
+		theRealProcessArea.style.width="75%";
 		songProcess.style.width="100%";
 		songProcess.style.height="auto";
 		document.getElementById('backgroundLyric').style.height=(wH)+"px";
 		mainBodyPhotoArea.style.height=(wH)+"px";
 		mainBodyLyricArea.style.height=(wH)+"px";
-
+	
+		
+	}
+	function playReady(){
+		document.getElementById('loading').style.display="none";
 	}
 	function compare(value1,value2){
-		return value1["singer_name"].localeCompare(value2["singer_name"]); 
+		return value1["singer_name"].localeCompare(value2["singer_name"],'zh'); 
 	}
 	function addSongToList(){
 		for(var item in songArray){
@@ -59,13 +74,15 @@
 		playSong(0);
 	}
 	function setAllTime(){
+		playReady();
 		var allTime=document.getElementById('allTime'),
 			minutes=Math.floor(song.duration/60),
 			seconds=Math.ceil(song.duration-minutes*60);
 		if(seconds<10) seconds="0"+seconds;
 		allTime.innerHTML="0"+minutes+":"+seconds;
 	}
-	function playSong(nowIndex){
+	function playSong(nowIndex){		
+		document.getElementById('loading').style.display="block";
 		song.src="songs/"+songArray[nowIndex]["singer_name"]+"-"+songArray[nowIndex]["song_name"]+".mp3";
 		var songTitle=document.getElementById('songTitle'),
 			singerName=document.getElementById('singerName'),
@@ -76,13 +93,13 @@
 		mainBodySongPhoto.src="singer/"+songArray[nowIndex]["singer_name"]+".jpg";
 		document.getElementById('backgroundLyric').src="singer/"+songArray[nowIndex]["singer_name"]+".jpg";
 		document.title=songArray[nowIndex]["song_name"];
-		songTitle.innerHTML="当前播放：<span>"+songArray[nowIndex]["song_name"]+"</span>";
+		songTitle.innerHTML="<span>"+songArray[nowIndex]["song_name"]+"</span>";
 		singerName.innerHTML="歌手：<span>"+songArray[nowIndex]["singer_name"]+"</span>";
 		getLyric("lrc/"+songArray[nowIndex]["singer_name"]+"-"+songArray[nowIndex]["song_name"]);
 		document.getElementsByClassName('thePlayNow')[0].className="";
 		var thislist=document.getElementsByTagName('li');  
 	  	thislist[nowIndex].className='thePlayNow';
-	  	mainBodyLyricArea.scrollTop=0;
+	  	showLyricArea.scrollTop=0;
 	  	getCommontList();
 		song.oncanplay=setAllTime;
 	}
@@ -124,11 +141,17 @@
 	}
 	song.ontimeupdate=function(e){
 		if(song.duration-song.currentTime<2){
+			var xhr=new XMLHttpRequest();
+			xhr.open('post','php/songEnd.php',false);
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send("songName="+songArray[nowIndex]['song_name']
+						+"&singerName="+songArray[nowIndex]['singer_name']);
 			nextOrPre(1);
 			song.play();
 		}
 		else{
 		var theProcessNow=document.getElementById('theProcessNow'),
+			showLyricArea=document.getElementById('showLyricArea'),
 			nowTime=document.getElementById('nowTime')
 			minutes=Math.floor(song.currentTime/60),
 			seconds=Math.ceil(song.currentTime-minutes*60),
@@ -141,7 +164,7 @@
 				liArray[liIndex].className="theLyricShowNow";
 				if(liIndex<liArray.length-1)
 				liIndex++;
-				mainBodyLyricArea.scrollTop=mainBodyLyricArea.scrollTop+20;
+				showLyricArea.scrollTop=showLyricArea.scrollTop+20;
 			}
 		if(seconds<10) seconds="0"+seconds;
 		nowTime.innerHTML="0"+minutes+":"+seconds;
@@ -150,8 +173,14 @@
 	}
 
 	function nextOrPre(number){
+
+		if(model==1){
+			nowIndex=Math.floor(Math.random()*(songArray.length-1));
+		}
+		else{
 		nowIndex=nowIndex+number;
 		nowIndex=(nowIndex+songArray.length)%(songArray.length);
+		}
 		play.src="images/pause.png";
 	 	playSong(nowIndex);
 	}
@@ -204,7 +233,7 @@
 		document.getElementsByClassName('thePlayNow')[0].className="";
 		e.target.className="thePlayNow";
 		for(var i=0;i<songArray.length;i++){
-	    	if(e.target.innerHTML==(songArray[i]["singer_name"]+"-"+songArray[i]["song_name"])){
+	    	if(e.target.innerText==(songArray[i]["singer_name"]+"-"+songArray[i]["song_name"])){
 	      		nowIndex=i;
 	    	}
 	  	}
@@ -214,6 +243,18 @@
 	  	setTimeout(addVolume,100);
 	});
 	//以下是评论功能的实现
+	function getServerDate(){//获取服务器时间
+    var xhr = null;
+    if(window.XMLHttpRequest){
+      xhr = new window.XMLHttpRequest();
+    }else{ // ie
+      xhr = new ActiveObject("Microsoft")
+    }
+    xhr.open("GET","/",false)//false不可变
+    xhr.send(null);
+    var date = xhr.getResponseHeader("Date");
+    return new Date(date);
+	}
 	finishCommont.addEventListener('click',sendCommontToDateBase);
 	function sendCommontToDateBase(){
 		var theUserName=document.getElementById('userName').innerText,
@@ -221,7 +262,7 @@
 			theSongName=songArray[nowIndex]["song_name"],
 			theSingerName=songArray[nowIndex]["singer_name"];
 		if(theCommontContent!=""){
-			var dateTime=new Date().toLocaleString();
+			var dateTime=getServerDate().toLocaleString();
 			 var xhr=new XMLHttpRequest();
 			 xhr.open('post','php/写入评论.php',false);
 			 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -288,3 +329,75 @@
 		localStorage.setItem("userName","");
 		window.location.href="index.html";
 	}
+
+//搜索功能的实现
+searchButton.addEventListener('click',showResultOfSearch);
+function showResultOfSearch(reg){
+		if(reg!=""){
+			var xhr=new XMLHttpRequest(),
+				searchContent=inputSongOrSingerName.value,
+				searchSongArray=[],
+				str="",
+				showResultSongListArea=document.getElementById('showResultSongListArea');
+			xhr.open('post','php/查询歌曲.php',false);
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send("searchContent="+searchContent);
+			searchSongArray=JSON.parse(xhr.responseText);
+			showResultSongList.innerHTML="";
+			if(searchSongArray.length==0){
+				showResultSongList.innerHTML="未搜到你想要的歌曲";
+				showResultSongList.style.display="block";
+			}
+			else{
+			for(var item in searchSongArray){
+				str+="<li>"+searchSongArray[item]['singer_name']+"-"
+						   +searchSongArray[item]['song_name']+"</li>";
+			}
+			showResultSongList.innerHTML=str;
+			showResultSongList.style.display="block";
+			}
+		}
+	}
+showResultSongList.addEventListener("click",function(e){
+		for(var i=0;i<songArray.length;i++){
+	    	if(e.target.innerText==(songArray[i]["singer_name"]+"-"+songArray[i]["song_name"])){
+	      		nowIndex=i;
+	    	}
+	  	}
+	  	showResultSongList.innerHTML="";
+	  	showResultSongList.style.display="none";
+	  	play.src="images/pause.png";
+	  	playSong(nowIndex);
+	  	song.play();
+});
+body.addEventListener('click',function(e){
+	switch(e.target.id){
+		case "showList":break;
+		case "phoneList":break;
+		default:songList.style.display="none";
+	}
+});
+phoneList.onclick=function(){
+	var songList=document.getElementById('songList');
+	if(songList.style.display!="block"){
+		phoneList.innerHTML="∧";
+		songList.style.display="block";
+	}
+	else{
+		phoneList.innerHTML="∨";
+		songList.style.display="none";
+	}
+}
+theRealProcessArea.addEventListener('click',function(e){
+	switch(e.target.id){
+		case "theProcessNow":
+		default:
+			var width=theRealProcessArea.getBoundingClientRect().right-theRealProcessArea.getBoundingClientRect().left,
+				percent=(e.clientX-theRealProcessArea.getBoundingClientRect().left)/width;
+				song.currentTime=song.duration*percent;
+				document.getElementById('theProcessNow').style=percent*100+"%";
+	}
+});
+mainBodyLyricArea.onclick=function(){
+	showResultSongList.style.display="none";
+};

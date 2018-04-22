@@ -1,4 +1,4 @@
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1200px){
 *{margin:0;padding:0;box-sizing: border-box;font-family:"仿宋";}
 ul,li{
 	list-style: none;
@@ -6,10 +6,24 @@ ul,li{
 }
 ::-webkit-scrollbar  
 {  
-    width: 5px;  /*滚动条宽度*/
+    width: 0px;  /*滚动条宽度*/
     height: 16px;  /*滚动条高度*/
 }  
-  
+ #loading{
+	position: absolute;
+	background:rgba(0,0,0,.5);
+	color:#fff;
+	font-size:50px;
+	z-index:9999;
+}
+#loadingSpan{
+	display: block;
+	position: relative;
+	left:50%;
+	top:50%;
+	text-align: center;
+	transform: translate(-50%,-50%);
+} 
 /*定义滚动条轨道 内阴影+圆角*/  
 ::-webkit-scrollbar-track  
 {  
@@ -25,23 +39,28 @@ ul,li{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
     background-color: #fff;  /*滚动条的背景颜色*/
 }  
-
-
-#songList{
-	display: none;
-	position:absolute;
-	bottom: 40px;
-	left:0;
-	width:460px;
-	height:350px;
-	font-size: 0;
-	background:rgba(0,0,0,.9);
+#list{
+	overflow: auto;
+	height:80vh;
+	width: 90vw;
+	font-size:20px;
+	border: 3px solid #999;
 }
-#songListMain{
-	display: inline-block;
-	width:100%;
-	height:350px;
-	padding:20px;
+#list>li{
+	border: 1px solid #999;
+}
+.thePlayNow{
+	color:#00faff;
+}
+#songList{
+	padding: 10vh 5vw;
+	display: none;
+	font-size:0;
+	height:100vh;
+	position:absolute;
+	font-size: 0;
+	z-index: 99;
+	background-color: rgba(0,0,0,0.5);
 }
 ul>li:hover{
 	color:#00eeff;
@@ -51,22 +70,17 @@ ul>li:hover{
 	color:#fff;
 	overflow: auto;
 }
-.thePlayNow{
-	color:#00ff00;
-}
-
 #songProcess{
 	position:absolute;
 	font-size:0;
 	padding:0 20px;
-	bottom:0;
+	bottom:20px;
 	height:50px;
+	z-index: 1;
 	padding-bottom:5px;
-	background:rgba(0,0,0,.7);
+	
 }
-#songProcess{
-	color:#fff;
-}
+
 .btn{
 	margin:0 5px;
 	border-radius: 50%;
@@ -74,12 +88,10 @@ ul>li:hover{
 .btn:hover{
 	background-color: #aaa;
 }
-#volumeControl{
-	outline: none;
-}
 
 #mainBody{width:100%;clear:both;}
 #mainBodyHead{
+
 	position:absolute;
 	padding-right: 20px;
 	width:100%;
@@ -87,39 +99,20 @@ ul>li:hover{
 	color:#fff;
 	height:70px;
 }
-
-#sendCommont{
-	clear:both;
-}
-#userPhoto{
-	float: left;
-	margin-left:10px;
-	vertical-align: top;
-	border-radius:10px;
-	border:2px solid #000;
-}
-#commont{
-	float: left;
-	margin-left:10px;
-	vertical-align: top;
-	width:80%;
-	height:100px;
-	outline:none;
-	resize:none;
-}
-#finishCommont{
-	width:100%;
-	font-size: 30px;
+#songTitle{
+	font-size:25px;
+	margin:10px;
+	text-align: center;
+	background:rgba(250,250,250,.1);
 	color:#fff;
-	outline:none;
-	border-radius:30px;
-	background:rgba(100,256,100,.9);
+	border:2px dotted #fff;
 }
 #backgroundLyric{
 	position: absolute;
 	z-index: -1;
 	 filter: blur(10px);
 	float: right;
+	background-color: #000;
 	width: 100%;
 }
 #mainBodyLyricArea{
@@ -128,96 +121,35 @@ ul>li:hover{
 	float:right;
 	background:rgba(0,0,0,.6);
 	color:#fff;
-	overflow: auto;
-}
-#songTitle,#singerName{
-	font-size:25px;
-	color:#00ff00;
-}
-#songTitle>span,#singerName>span{
 	
 }
+
 #showLyricArea{
+	overflow: auto;
+	height: 65vh;
 	text-align: center;
 }
+
 .theLyricShowNow{
 	font-size: 25px;
 	color:#00ff00;
 }
-#userPower{
-	position:absolute;
-	width:70px;
-	height:70px;
-	text-align:center;
-	top:0;
-	opacity: 0;
-	right: 20px;
-	line-height: 70px;
-	border-radius:50%;
-	color:#00ff00;
-	background:rgba(0,0,0,.7);
-}
 
 /*改动*/
-#mainBodyPhotoArea{
-	display:none;
-	width:40%;
-	float:left;
-	overflow: auto;
-	border-right:1px solid #999;
-}
-#photo{
-	width:100%;
-	padding-top:50px;
-	text-align:center;
-}
-#commontArea{
-	width:100%;
-	height:50px;
-	padding:0 30px;
-}
-.commontListArea{
 
-}
-.commontList{
-	margin:20px;
-}
-.commontListLi{
-}
-.commontListUser{
-	border-bottom:1px solid #ccc;
-}
-.commontListUserPhoto{
-	vertical-align: middle;
-	width:50px;
-	height:50px;
-	border-radius:10px;
-	border:2px solid #000;
-}
-.commontListUserName{
-	padding-left: 10px;
-	vertical-align: bottom;
-	font-size: 25px;
-}
-.commontTime{
-	color:#aaa;
-	vertical-align: bottom;
-	font-size:15px;
-}
-.commontContent{
-	width:100%;
-	height:100px;
-	border: none;
-	resize:none;
-	outline: none;
-	font-size: 15px;
-}
 #btnArea{
 	width: 100%;
+	clear:both;
 	text-align: center;
 }
+#phoneList{
+	position: absolute;
+	top:20px;
+	left: 20px;
+	z-index:9999;
+}
 
-#volume,#volumeControl,#searchSongArea,#theProcessArea{
+#volume,#singerName,#songPhoto,#userName,#userPower,#volumeControl,#searchSongArea,#theProcessArea,#showList,#mainBodyPhotoArea{
 	display: none;
 }
 
