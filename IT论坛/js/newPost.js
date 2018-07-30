@@ -159,9 +159,8 @@ function sendArticle(){
 				if(xhr.readyState==4){
 					if(xhr.status==200){
 						if(JSON.parse(xhr.responseText)['message']=='发布成功'){
-							coolAlert('发布成功');
-							let selectTypeArea=document.getElementById('selectTypeArea');
-							selectTypeArea.classList.toggle('disappear');
+							alert('发布成功');
+							window.location.href="index.html";
 						}
 						else{
 							coolAlert('发布失败');

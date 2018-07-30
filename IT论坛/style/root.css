@@ -40,6 +40,37 @@ button:hover{
 button:active{
 	background: linear-gradient(to bottom right,rgba(30,30,30,.8) 10%,rgba(180,180,180,.5) 100%);
 }
+	#coolAlert{
+		position: fixed;
+		top:-70px;
+		left:50%;
+		transform:translateX(-50%);
+		width: 80%;
+		max-width: 600px;
+		height: 60px;
+		line-height: 60px;
+		background-color:#fff;
+		border:1px solid rgb(0,108,255); 
+		color:rgb(0,108,255);
+		text-align: center;
+	}
+	.coolAlertShow{
+		animation:2s coolAlertAnimate linear;
+	}
+	@keyframes coolAlertAnimate{
+		0%{
+			top:-70px;
+		}
+		30%{
+			top:0;
+		}
+		70%{
+			top:0;
+		}
+		100%{
+			top:-70px;
+		}
+	}
 /*上方栏*/
 .welcome{
 	position: fixed;

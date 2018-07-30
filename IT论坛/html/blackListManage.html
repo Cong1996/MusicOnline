@@ -24,73 +24,17 @@
 					<span class="fa fa-search"></span>
 				</button>
 			</div>
-			<ul class="user-table">
+			<ul id="blackList" class="user-table">
 				<li>
 					<span>用户ID</span>
 					<span>用户名</span>
 					<span>用户邮箱</span>
-					<span>创建时间</span>
+					<span>拉黑原因</span>
+					<span>拉黑时间</span>
 					<span>
 					</span>
-				</li>
-				<li>
-					<span>1</span>
-					<span>Cong</span>
-					<span>18823547629@163.com</span>
-					<span>1111-11-11 11:11:11</span>
-					<span>
-						<span class="manage-button-area">
-							<input class="editButton" type="button" value="恢复">
-							<input class="deleteButton" type="button" value="删除">
-						</span>						
-					</span>
-				</li>
-				<li>
-					<span>2</span>
-					<span>Cong</span>
-					<span>18823547629@163.com</span>
-					<span>1111-11-11 11:11:11</span>
-					<span>
-						<span class="manage-button-area">
-							<input class="editButton" type="button" value="恢复">
-							<input class="deleteButton" type="button" value="删除">
-						</span>						
-					</span>
-				</li>
-								<li>
-					<span>3</span>
-					<span>Cong</span>
-					<span>18823547629@163.com</span>
-					<span>1111-11-11 11:11:11</span>
-					<span>
-						<span class="manage-button-area">
-							<input class="editButton" type="button" value="恢复">
-							<input class="deleteButton" type="button" value="删除">
-						</span>						
-					</span>
-				</li>
-				<li>
-					<span>4</span>
-					<span>Cong</span>
-					<span>18823547629@163.com</span>
-					<span>1111-11-11 11:11:11</span>
-					<span>
-						<span class="manage-button-area">
-							<input class="editButton" type="button" value="恢复">
-							<input class="deleteButton" type="button" value="删除">
-						</span>						
-					</span>
-				</li>
+				</li>	
 			</ul>
-			<!-- <table>
-				<tr>
-					<td>用户ID</td>
-					<td>用户名</td>
-					<td>用户邮箱</td>
-					<td>创建时间</td>
-				</tr>
-				<tbody></tbody>
-			</table> -->
 		</div>
 	</div>
 	<div class="leftRootNav">
@@ -156,6 +100,8 @@
 		</div>
 
 	</div>
+	<div id="coolAlert">something is Error</div>
 	<script src="../js/root.js"></script>
+	<script src="../js/blackListManage.js"></script>
 </body>
 </html>
