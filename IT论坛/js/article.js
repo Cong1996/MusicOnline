@@ -396,7 +396,6 @@ function showCommont(commontArray){
 			if(xhr.readyState==4){
 				if(xhr.status==200){
 				i['content']= decodeURIComponent(i['content']);
-				// i['content']=i['content'].replace(/\#11111\#/g,'&');
 					let time=getTime(i['create_time']);
 					str=`
 						<li>

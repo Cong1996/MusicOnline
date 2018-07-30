@@ -15,13 +15,14 @@ let postContent=document.getElementById('postContent'),
 postContent.onfocus=edit;
 postContent.onblur=noedit;
 function edit(){
-	if(postContent.innerText=="输入正文...")
-		postContent.innerText="";
+	if(postContent.innerHTML=="输入正文..."){
+		postContent.innerHTML="";
 		postContent.style="color:#444";
+	}
 }
 function noedit(){
-	if(!postContent.innerText){
-		postContent.innerText="输入正文..."
+	if(!postContent.innerHTML){
+		postContent.innerHTML="输入正文..."
 		postContent.style="color:#aaa";
 	}
 }
