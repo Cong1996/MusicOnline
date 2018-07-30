@@ -1,0 +1,314 @@
+#file{
+	position: absolute;
+	top:0;
+	width: 100px;
+	height: 100px;
+}
+#excelFile{
+	height: 100%;
+}
+/*个人信息区域*/
+.personalArea{
+	float:left;
+	width: 100%;
+	max-width: 700px;
+}
+.personalMessageArea{
+	height:160px;
+	width: 100%;
+	background: #fff;
+	box-shadow:1px 1px 4px #ddd;
+	font-size:0;
+}
+
+.personalPhoto{
+	float:left;
+	box-sizing: border-box;
+	height: 160px;
+	width: 160px;
+	display: block;
+	padding: 30px;
+}
+
+.personalPhoto>img{
+	border-radius:50%;
+
+}
+.personalDescription{
+	box-sizing: border-box;
+	margin-left: 160px;
+	height: 100%;
+	position: relative;
+	padding: 30px;
+}
+.personalDescription>h1{
+	position: absolute;
+	top:0;
+	font-size:22px;
+	margin:30px 0;
+}
+.personalDescription>.moreMessage{
+	position: absolute;
+	bottom:30px;
+}
+.moreMessage>span{
+	display: block;
+	color:#777;
+	font-size:16px;
+	margin-top:5px;
+}
+.moreMessage .fa{
+	margin-right: 10px;
+}
+.personalDescription>input[type='button']{
+	position: absolute;
+	right: 30px;
+	bottom: 30px;
+	width: 120px;
+	height: 34px;
+	font-size:16px;
+	padding:0;
+	border: 1px solid rgb(0,108,255);
+	color:rgb(0,108,255);
+	background-color:#fff;
+	box-shadow: none;
+}
+.personalDescription>input[type='button']:hover{
+	color:rgb(168,198,255);
+}
+/*个人相关*/
+.personalShowArea{
+	margin-top:20px;
+	width: 100%;
+	background: #fff;
+}
+.personalShowArea>nav{
+	height: 50px;
+	border-bottom:1px solid #ddd;
+}
+.personalShowArea>nav li{
+	display: inline-block;
+	font-size:16px;
+	text-align: center;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+}
+.personalShowArea>nav .active{
+	position: relative;
+	color:rgb(0,108,255);
+}
+.personalShowArea>nav .active::after{
+	position: absolute;
+	content:'';
+	width: 100px;
+	height: 2px;
+	bottom:0;
+	left:0;
+	background-color:rgb(0,108,255);
+}
+
+.postHistory li{
+	padding: 10px 20px 20px 20px;
+	border-bottom: 1px solid #eee;
+	cursor:pointer;
+}
+.postHistory li:hover{
+	background-color:rgb(251,251,251);
+}
+.doSomethingTitle{
+	position: relative;
+	color:#999;
+	height:40px;
+	line-height: 40px;
+}
+.Something{
+	position: absolute;
+	left:0;
+}
+.timeOfDoSomething{
+	position: absolute;
+	right: 0;
+}
+.doSomethingContent{
+	background-color: rgb(253,253,253);
+	border:1px solid #eee;
+	padding:15px;
+	font-weight: 700;
+	font-size:16px;
+	color:#000;
+}
+/*修改个人信息*/
+.changePersonalArea{
+	float:left;
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 700px;
+	background-color: #fff;
+	padding:0 40px;
+	border-radius: 2px;
+	margin-bottom:20px;
+}
+.changePersonalArea li{
+	position: relative;
+	width: 100%;
+	height: 80px;
+	font-size:0;
+	border-top:1px solid #eee;
+}
+
+.changePersonalArea h1{
+	margin:30px 0;
+}
+.normalMessage li:first-child{
+	height:100px;
+}
+.normalMessage li:last-child{
+	border-bottom:1px solid #eee;
+}
+.changeTypeArea{
+	display: inline-block;
+	width: 18%;
+	position: relative;
+	font-size:16px;
+}
+.changeTypeArea span{
+	line-height: 80px;
+	vertical-align: top;
+}
+.changeContentArea{
+	vertical-align: top;
+	display: inline-block;
+	width: 82%;
+	height: 80px;
+}
+.changeContentArea>img{
+	float:left;
+	display: block;
+	width:80px;
+	margin:10px;
+}
+.changeContentArea>.buttonArea{
+	position:relative;
+	vertical-align: middle;
+	margin-left:100px;
+	font-size:10px;
+	height: 100px;
+}
+.buttonArea>span{
+	position: absolute;
+	top:20px;
+	color:#999;
+	font-size:12px;
+}
+.buttonArea>input{
+	position: absolute;
+	display: block;
+	bottom:20px;
+	left:0;
+	margin:0;
+	padding: 0;
+	height:auto;
+}
+.changeContentArea input[type="button"],.mobileSubmitButton,.passwordArea input[type="button"],
+#returnMainButton{
+	width: 80px;
+	background-color:rgb(0,108,255);
+	color:#fff;
+	padding:5px 10px;
+}
+input[type="file"]{
+	opacity: 0;
+}
+.changeContentArea input[type="text"],.changeContentArea>input[type="password"]{
+	padding-left: 10px;
+	position: absolute;
+	top:50%;
+	transform: translateY(-50%);
+	border:none;
+	width:80%;
+	outline: none;
+	height: 30px;
+	font-size:18px;
+	color:#999;
+}
+
+.editMessageArea{
+	width: 120px;
+	height: 30px;
+	position: absolute;
+	top:50%;
+	transform:translateY(-50%);
+	right:0;
+	color:rgb(0,108,255);
+	font-size:16px;
+	line-height: 30px;
+	cursor:pointer;
+}
+.editMessageArea>span{
+	margin-right: 5px;
+}
+.editMessageArea:hover{
+	color:rgb(200,208,255);
+}
+
+@media screen and (min-width: 961px){
+
+.mobileSubmitButton{
+	display: none;
+}
+/*密码区域*/
+.passwordArea{
+	margin-bottom: 30px;
+}
+#returnMainButton{
+	position: absolute;
+	height: 30px;
+	top:30px;
+	right: 30px;
+}
+}
+@media screen and (min-width: 360px) and (max-width: 960px){
+	.nav-item-user{
+		position: absolute;
+		top:0;
+		right: 30px;
+	}
+	.moreMessage{
+		display: none;
+	}
+	.personalDescription input[type='button']{
+		position: absolute;
+		left:30px;
+	}
+	.buttonArea{
+		display: none;
+	}
+	.buttonArea>input[type='button'],.mobileSubmitButton,#returnMainButton,
+	.passwordArea>input[type='button']{
+		border:none;
+	}
+	#returnMainButton{
+		margin-top:5px;
+	}
+	.changeContentArea>input[type='text']{
+		width: 80%;
+	}
+	.changeTypeArea{
+		display: none;
+	}
+	.editMessageArea{
+		display: none;
+	}
+	/*密码区域*/
+	.passwordArea{
+		margin-bottom: 30px;
+	}
+	#returnMainButton{
+		position: absolute;
+		height: 30px;
+		top:30px;
+		right: 30px;
+	}
+}

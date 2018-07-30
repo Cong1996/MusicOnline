@@ -1,0 +1,143 @@
+.announcement-area{
+	position: relative;
+	margin:10px;
+}
+/*发布新公告*/
+.new-announcement-area{
+	position: absolute;
+	top:0;
+	left:0;
+	right: 35%;
+	font-size: 0;
+	padding: 10px;
+	box-shadow:2px 2px 10px #ccc;
+	border-radius: 10px;
+}
+.new-announcement-title{
+	margin-bottom: 10px;
+}
+.new-announcement-title input[type='text']{
+	box-sizing: border-box;
+		height: 40px;
+	line-height: 40px;
+	padding: 10px;
+	border:none;
+	color:#444;
+	font-weight: 700;
+	font-size:20px;
+	border-radius: 2px;
+}
+.new-announcement-title input[type='text']:focus{
+	border:none;
+}
+.new-announcement-body{
+	
+}
+.new-announcement-body textarea{
+	box-sizing: border-box;
+	width: 100%;
+	height: 300px;
+	padding: 10px;
+	border: none;
+	border-radius: 2px;
+	outline: none;
+}
+.new-announcement-button{
+	margin:10px 0;
+}
+.new-announcement-button input[type="button"]{
+	float: right;
+	height: 100%;
+	outline: none;
+	width: 50px;
+	border:none;
+	padding: 5px;
+	margin-left:5px;
+	border-radius: 10px;
+	box-shadow: 1px 1px 1px #999;
+}
+.new-announcement-button input[type="button"]:hover{
+	background: linear-gradient(to bottom right,transparent 0%,#ddd 100%);
+}
+.new-announcement-button input[type="button"]:active{
+	background: linear-gradient(to bottom right,#999 0%,#666 100%);
+}
+.resetButton{
+	background-color:#FFFF99;
+}
+.submitButton{
+	background-color:#99ffff;
+}
+/*往期公告*/
+.old-announcement-area{
+	position: absolute;
+	top:0;
+	height:800px;
+	left:65%;
+	right: 0;
+	padding:0 20px 20px 20px;
+}
+.old-announcement{
+	position: relative;
+	box-shadow: 5px 5px 10px #ddd;
+	background-color: #fff;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+.old-announcement-title{
+	position: relative;
+	border-bottom: 1px solid #ddd;
+}
+.old-announcement-time{
+	position: absolute;
+	display: block;
+	color:#aaa;
+	height: 40px;
+	line-height: 40px;
+	font-size:15px;
+	top:0;
+	right: 0;
+}
+.old-announcement-title input[type='text']{
+	box-sizing: border-box;
+	height: 40px;
+	line-height: 40px;
+	padding: 10px;
+	border:none;
+	color:#444;
+	font-weight: 700;
+	font-size:20px;
+	background-color:transparent;
+}
+.old-announcement-title input[type='text']:focus{
+	border:none;
+}
+.old-announcement-body{
+	font-size: 0;
+}
+.old-announcement-body textarea{
+	box-sizing: border-box;
+	width: 100%;
+	height: 100px;
+	padding: 0 10px;
+	border: none;
+	outline: none;
+	background-color:transparent;
+}
+.old-announcement-button{
+	position: absolute;
+	bottom:5px;
+	right: 5px;
+}
+.editButton{
+	background-color:transparent;
+}
+.deleteButton{
+	background-color:transparent;
+}
+.old-announcement-button span:hover{
+	color:#999;
+}
+.old-announcement-button span:active{
+	color:#0ff;
+}

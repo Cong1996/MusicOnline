@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理员界面</title>
+	<meta name="viewport" content="width=device-width,initial-sacle=1">
+	<link rel="icon" href="../fakeIT.ico">
+	<link rel="stylesheet" href="../style/root.css">
+	<link rel="stylesheet" href="../style/rootIndex.css">
+	<link rel="stylesheet" href="../style/font-awesome.min.css">
+</head>
+<body>
+	<div class="center">
+		<div class="dirArea">
+			<span class="fa fa-home"></span>
+			/<span class="dir">首页</span>
+		</div>
+		<h1>首页</h1>
+		<div class="dataShowArea">
+			<div class="dataShow">
+				<div class="dataIcon userTheme">
+					<span class="fa fa-user"></span>
+				</div>
+				<div class="data">
+					<span class="dataNumber">120</span>
+					<span class="dataDescription">新用户</span>
+				</div>
+			</div>
+			<div class="dataShow">
+				<div class="dataIcon visitTheme">
+					<span class="fa fa-bar-chart"></span>
+				</div>
+				<div class="data">
+					<span class="dataNumber">9999</span>
+					<span class="dataDescription">访问量</span>
+				</div>
+			</div>
+			<div class="dataShow">
+				<div class="dataIcon postTheme">
+					<span class="fa fa-file-text-o"></span>
+				</div>
+				<div class="data">
+					<span class="dataNumber">120</span>
+					<span class="dataDescription">帖子数</span>
+				</div>
+			</div>
+			<div class="dataShow">
+				<div class="dataIcon blackListTheme">
+					<span class="fa fa-user-secret"></span>
+				</div>
+				<div class="data">
+					<span class="dataNumber">120</span>
+					<span class="dataDescription">黑名单数量</span>
+				</div>
+			</div>
+		</div>
+		<canvas id="canvas" width="1000" height="1000"></canvas>
+	</div>
+	<div class="leftRootNav">
+		<div class="searchArea">
+			<input type='text' placeholder="Search">
+		</div>
+		<div class="rootList">
+		<ul>
+			<a href="rootIndex.html">
+				<li class="active">
+					<span class="rootIcon fa fa-home"></span>
+					<span class="rootName">首页</span>			
+				</li>
+			</a>
+			<a href="userManage.html">
+			<li>
+				<span class="rootIcon fa fa-users"></span>
+				<span class="rootName">用户管理</span>
+			</li>
+			</a>
+			<a href="blackListManage.html">
+			<li>
+				<span class="rootIcon fa fa-user-secret"></span>
+				<span class="rootName">黑名单管理</span>
+			</li>
+			</a>
+			<a href="postManage.html">
+			<li>
+				<span class="rootIcon fa fa-folder-open-o"></span>
+				<span class="rootName">帖子管理</span>
+			</li>
+			</a>
+			<a href="announcementManage.html">
+			<li>
+				<span class="rootIcon fa fa-edit"></span>
+				<span class="rootName">公告管理</span>
+			</li>
+			</a>
+			<a href="backlogin.html">
+			<li>
+				<span class="rootIcon fa fa-sign-out"></span>
+				<span class="rootName">返回登录</span>
+			</li>
+			</a>
+		</ul>
+		</div>
+	</div>
+	<div class="welcome">
+		<span class="webName">Fake IT</span>
+		<div id="userIcon" class="userIcon">
+			<span class="fa fa-user-o"></span>
+			<span class="fa fa-caret-down"></span>
+			<div id="userMenu" class="userMenu">
+				<ul>
+					<li>
+						<span class="fa fa-gear">设置</span>
+					</li>
+					<li>
+						<span class="fa fa-sign-out">退出</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	<script src="../js/canvasDraw.js"></script>
+	<script src="../js/root.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+/*用户模糊搜索*/
+.user-search{
+	height:30px;
+	line-height: 30px;
+	text-align: center;	
+	color:#444;
+	padding:10px 0;
+	border-bottom:1px solid #ddd;
+}
+.user-search input[type='text']{
+	width: 50%;
+}
+
+/*用户表管理*/
+.user-manage-area{
+	position: absolute;
+	left:10px;
+	right:10px;
+	background: #fff;
+	box-shadow: 5px 5px 10px #ccc;
+}
+.user-table li{
+	display: flex;
+	line-height: 30px;
+}
+.user-table li:not(:last-child){
+	margin-bottom: 5px;
+}
+.user-table li>span{
+	box-sizing: border-box;
+	width: 20%;
+	text-align: center;
+}
+.manage-button-area{
+	font-size:0;
+
+}
+input[type="button"]{
+	vertical-align: top;
+	height: 100%;
+	outline: none;
+	width: 50%;
+	border:none;
+	border-radius: 20px;
+	box-shadow: 2px 2px 5px #999;
+}
+input[type="button"]:hover{
+	background: linear-gradient(to bottom right,rgba(30,30,30,.5) 10%,rgba(180,180,180,.1) 100%);
+}
+input[type="button"]:active{
+	background: linear-gradient(to bottom right,rgba(30,30,30,.8) 10%,rgba(180,180,180,.5) 100%);
+}
+
+.editButton{
+
+	background-color:#555;
+	color:#fff;
+}
+
+.deleteButton{
+	background-color:rgb(255,100,100);
+	color:#fff;
+}
+.user-table li:nth-child(odd){
+	background-color:rgb(240,240,240);
+}

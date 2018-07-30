@@ -1,0 +1,131 @@
+.postList{
+	min-height: 100px;
+}
+#noPost{
+	line-height: 100px;
+	text-align: center;
+}
+.postList>li{
+	padding:20px 20px;
+	border-bottom: 1px solid #eee;
+}
+.postList>li>a{
+	color:#000;
+}
+.postList>li:hover{
+	background: rgb(251,251,251);
+}
+.postTitle{
+	font-size:16px;
+	font-weight: 700;
+	margin:10px 0;
+
+}
+.postTitle:hover{
+	text-decoration:underline #000;
+}
+.postDescription{
+	font-size:10px;
+	color:#aaa;
+}
+.author{
+	margin-right: 10px;
+}
+.author:hover{
+	color:rgb(0,108,255);
+}
+.postTime{
+	margin-right: 10px;
+}
+.pointNumber{
+	
+}
+
+@media screen and (min-width: 960px){
+/*推荐文章区域*/
+.postArea{
+	float:left;
+	width: 100%;
+	max-width: 700px;
+	background-color: #fff;
+	box-shadow:1px 1px 4px #ddd;
+}
+.postHeader{
+	width:100%;
+	display: flex;
+	line-height: 60px;
+	color:#777;
+	border-bottom:1px solid #eee
+}
+.postHeader>span{
+	float:left;
+	display: inline-block;
+	font-size:18px;
+	padding-left:20px;
+	width: 200px;
+	color:#444;
+}
+.postHeader>ul{
+	width: 100%;
+	float:right;
+	display: flex;
+	padding-right: 20px;
+	cursor:pointer;
+}
+.postHeader>ul>li{
+	flex:1 1 auto;
+	font-size: 16px;
+}
+.postHeader>ul>li:hover{
+	color:rgb(0,108,255);
+}
+.postHeader .active{
+	color:rgb(0,108,255);
+}
+
+.postListArea{
+	width: 100%;
+	
+}
+.postList{
+		
+}
+
+
+
+	
+}
+@media screen and (min-width: 360px) and (max-width: 959px){
+	.postArea{
+		width: 100%;
+		background-color: #fff;
+		overflow-x: hidden;
+	}
+	.postHeader{
+		width: 100%;
+		overflow: auto;
+		white-space: nowrap;
+		border-bottom: 1px solid #eee;
+	}
+	.postHeader>span{
+		display: inline-block;
+		margin-right: 10px;
+		text-align: center;
+		width: 100px;
+	}
+	.postHeader>ul{
+		display: inline-block;
+		height:30px;
+		line-height: 30px;
+	}
+	.postHeader>ul li{
+		display: inline-block;
+		width: 50px;
+		text-align: center;
+		font-size:1em;
+	}
+	#noPost{
+	line-height: 300px;
+	text-align: center;
+	}
+}	

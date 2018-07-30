@@ -1,0 +1,19 @@
+body,html,div,ul,li,input{
+	margin:0;
+	padding:0;
+	font-family:"Times New Roman","FangSong";
+}
+li{
+	list-style-type: none;
+}
+/*背景*/
+body{
+	overflow: hidden;
+}
+.wrap{
+	position: absolute;
+	top:0;
+	bottom:0;
+	width: 100%;
+	background-image: 
+}

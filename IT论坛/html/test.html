@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+     span{
+     	line-height: 1.5;
+     	font-size:40px;
+     }
+     input:checked{
+     	font-size:180px;
+     }
+    </style>
+    <script src="jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<input type="checkbox" value="hello" checked>
+<input type="checkbox" value="hello">
+<script>
+ function Person(){
+
+ }
+ let friend=new Person();
+ Person.prototype={
+  say:function(){
+    console.log('ok');
+  }
+ }
+
+ friend.say();
+</script>
+</body>
+</html>

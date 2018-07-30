@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理员界面</title>
+	<meta name="viewport" content="width=device-width,initial-sacle=1">
+	<link rel="icon" href="../fakeIT.ico">
+	<link rel="stylesheet" href="../style/root.css">
+	<link rel="stylesheet" href="../style/userManage.css">
+	<link rel="stylesheet" href="../style/blackListManage.css">
+	<link rel="stylesheet" href="../style/font-awesome.min.css">
+</head>
+<body>
+	<div class="center">
+		<div class="dirArea">
+			<span class="fa fa-home"></span>
+			/<span class="dir">黑名单管理</span>
+		</div>
+		<h1>黑名单管理</h1>
+		<div class="user-manage-area">
+			<div class="user-search">
+				模糊搜索：<input type="text" placeholder="Search">
+				<button>
+					<span class="fa fa-search"></span>
+				</button>
+			</div>
+			<ul class="user-table">
+				<li>
+					<span>用户ID</span>
+					<span>用户名</span>
+					<span>用户邮箱</span>
+					<span>创建时间</span>
+					<span>
+					</span>
+				</li>
+				<li>
+					<span>1</span>
+					<span>Cong</span>
+					<span>18823547629@163.com</span>
+					<span>1111-11-11 11:11:11</span>
+					<span>
+						<span class="manage-button-area">
+							<input class="editButton" type="button" value="恢复">
+							<input class="deleteButton" type="button" value="删除">
+						</span>						
+					</span>
+				</li>
+				<li>
+					<span>2</span>
+					<span>Cong</span>
+					<span>18823547629@163.com</span>
+					<span>1111-11-11 11:11:11</span>
+					<span>
+						<span class="manage-button-area">
+							<input class="editButton" type="button" value="恢复">
+							<input class="deleteButton" type="button" value="删除">
+						</span>						
+					</span>
+				</li>
+								<li>
+					<span>3</span>
+					<span>Cong</span>
+					<span>18823547629@163.com</span>
+					<span>1111-11-11 11:11:11</span>
+					<span>
+						<span class="manage-button-area">
+							<input class="editButton" type="button" value="恢复">
+							<input class="deleteButton" type="button" value="删除">
+						</span>						
+					</span>
+				</li>
+				<li>
+					<span>4</span>
+					<span>Cong</span>
+					<span>18823547629@163.com</span>
+					<span>1111-11-11 11:11:11</span>
+					<span>
+						<span class="manage-button-area">
+							<input class="editButton" type="button" value="恢复">
+							<input class="deleteButton" type="button" value="删除">
+						</span>						
+					</span>
+				</li>
+			</ul>
+			<!-- <table>
+				<tr>
+					<td>用户ID</td>
+					<td>用户名</td>
+					<td>用户邮箱</td>
+					<td>创建时间</td>
+				</tr>
+				<tbody></tbody>
+			</table> -->
+		</div>
+	</div>
+	<div class="leftRootNav">
+		<div class="searchArea">
+			<input type='text' placeholder="Search">
+		</div>
+		<div class="rootList">
+		<ul>
+			<a href="rootIndex.html">
+				<li>
+					<span class="rootIcon fa fa-home"></span>
+					<span class="rootName">首页</span>			
+				</li>
+			</a>
+			<a href="userManage.html">
+			<li>
+				<span class="rootIcon fa fa-users"></span>
+				<span class="rootName">用户管理</span>
+			</li>
+			</a>
+			<a href="blackListManage.html">
+			<li class="active">
+				<span class="rootIcon fa fa-user-secret"></span>
+				<span class="rootName">黑名单管理</span>
+			</li>
+			</a>
+			<a href="postManage.html">
+			<li>
+				<span class="rootIcon fa fa-folder-open-o"></span>
+				<span class="rootName">帖子管理</span>
+			</li>
+			</a>
+			<a href="announcementManage.html">
+			<li>
+				<span class="rootIcon fa fa-edit"></span>
+				<span class="rootName">公告管理</span>
+			</li>
+			</a>
+			<a href="backlogin.html">
+			<li>
+				<span class="rootIcon fa fa-sign-out"></span>
+				<span class="rootName">返回登录</span>
+			</li>
+			</a>
+		</ul>
+		</div>
+	</div>
+	<div class="welcome">
+		<span class="webName">Fake IT</span>
+		<div id="userIcon" class="userIcon">
+			<span class="fa fa-user-o"></span>
+			<span class="fa fa-caret-down"></span>
+			<div id="userMenu" class="userMenu">
+				<ul>
+					<li>
+						<span class="fa fa-gear">设置</span>
+					</li>
+					<li>
+						<span class="fa fa-sign-out">退出</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	<script src="../js/root.js"></script>
+</body>
+</html>

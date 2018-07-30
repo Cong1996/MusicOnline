@@ -1,0 +1,171 @@
+/*管理员页面公用样式*/
+body,div,ul,li,input,textarea{
+	margin:0;
+	padding: 0;
+	font-family: '宋体';	
+}
+li{
+	list-style-type: none;
+}
+textarea{
+	resize: none;
+}
+body{
+	background-color:rgb(241,244,247);
+}
+a{
+	text-decoration: none;
+}
+a:hover{
+	color:#000;
+}
+a:active{
+	color:#000;
+}
+a:visited{
+	color:#000;
+}
+button{
+	width: 30px;
+	height:30px;
+	border:none;
+	color:#fff;
+	border-radius:4px;
+	outline: none;
+	background-color:rgb(48,165,255);
+}
+button:hover{
+	background: linear-gradient(to bottom right,rgb(48,65,155) 0%,rgb(48,165,255) 100%);
+}
+button:active{
+	background: linear-gradient(to bottom right,rgba(30,30,30,.8) 10%,rgba(180,180,180,.5) 100%);
+}
+/*上方栏*/
+.welcome{
+	position: fixed;
+	left:0;
+	right: 0;
+	height:50px;
+	background-color:rgb(34,34,34);
+}
+.webName{
+	line-height: 50px;
+	margin-left:20px;
+	font-size:20px;
+	background:linear-gradient(to right,rgb(48,165,255),0%,rgb(48,165,255), 65%,#fff 65%, #fff 100%);
+	-webkit-background-clip:text;
+	color:transparent;
+}
+.userIcon{
+	position: absolute;
+	top:0;
+	right: 0;
+	height: 50px;
+	line-height: 50px;
+	color:#fff;
+	font-size: 25px;
+	margin-right: 50px;
+}
+/*用户菜单*/
+.userMenu{
+	display: none;
+	position: absolute;
+	top:40px;
+	right: 0;
+	width: 100px;
+	height: 50px;
+	color:#444;
+	border-radius:2px;
+	background-color:#fff;
+	font-size:15px;
+	box-shadow: 0 0 5px #444;
+	padding: 10px 0
+}
+.userMenu li{
+	line-height: 25px;
+	padding-left: 10px;
+}
+.userMenu li:hover{
+	background-color:#eee;
+}
+
+/*左边工具栏*/
+.leftRootNav{
+	position: fixed;
+	left:0;
+	top:50px;
+	bottom:0;
+	width: 250px;
+	background-color:rgb(255,255,255);
+}
+/*搜索框*/
+.searchArea{
+	padding:20px;
+	font-size: 0;
+	border-bottom: 1px solid #eee;
+}
+input[type="text"]{
+	width: 100%;
+	padding-left:10px;
+	outline: none;
+	height:28px;
+	line-height: 28px;
+	font-size:14px;
+	color:#777;
+	border-radius:2px;
+	border:1px solid #eee;
+}
+input[type="text"]:focus{
+	border:1px solid rgb(48,165,255);
+}
+
+/*工具列表*/
+.rootList li{
+	padding:8px;
+	color:rgb(48,165,255);
+}
+.rootList li:hover{
+	background-color:#eee;
+}
+.rootList .active{
+	background-color: rgb(48,165,255);
+	color:#fff;
+}
+.rootList .active:hover{
+	background-color: rgb(48,165,255);
+}
+.rootIcon{
+	display: inline-block;
+	width: 50px;
+	text-align: center;
+}
+/*主体部分*/
+.center{
+	position: absolute;
+	left:250px;
+	right: 0;
+	top:50px;
+	height: 800px;
+	background-color:rgb(241,244,247);
+}
+.dirArea{
+	color:#ccc;
+	height:50px;
+	font-size: 20px;
+	background-color:rgb(233,236,242);
+	line-height: 50px;
+	padding:0 10px;
+}
+.dirArea .fa{
+	color:rgb(48,165,255);
+}
+.dir{
+	margin-left: 10px;
+	font-size: 20px;
+	color:#999;
+}
+.center h1{
+	color:#444;
+	padding: 0 10px;
+	margin:20px 0;
+}
