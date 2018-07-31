@@ -31,8 +31,11 @@
 				<li id="newPostButton" class="nav-item-edit">
 				<a href="newPost.html">	<i class="fa fa-file-text-o"></i>发布新帖</a>
 				</li>
-				<li class="nav-item-user">
-					<a href="personal.html"><img id="navUserPhoto" src="../images/default.png" width="35px" height="35px"></a>
+				<li id="navLoginButton" class="nav-item-login disappear">
+					<a href="index.html">登录&注册</a>
+				</li>
+				<li id="navItemUser"  class="nav-item-user">
+					<a id="navItemPerson" href="personal.html"><img id="navUserPhoto" src="../images/default.png" width="35px" height="35px"></a>
 				</li>	
 			</ul>
 			</div>			
@@ -54,49 +57,15 @@
 			</div>
 			<div class="personalShowArea">
 				<nav class="personal-nav-list">
-					<ul>
-						<li class="active">动态</li>
+					<ul id="noteNavList">
+						<li class="active">发布文章</li>
+						<li>评论</li>
 						<li>收藏</li>
 					</ul>
 				</nav>
 				<div class="postHistory">
-					<ul>
-						<li>
-							<div class="doSomethingTitle">
-								<span class="Something">收藏了文章</span>
-								<span class="timeOfDoSomething">2111-1-1</span>
-							</div>	
-							<div class="doSomethingContent">
-								如何成功回归警队？？
-							</div>
-						</li>
-						<li>
-							<div class="doSomethingTitle">
-								<span class="Something">发表了文章</span>
-								<span class="timeOfDoSomething">2111-1-1</span>
-							</div>	
-							<div class="doSomethingContent">
-								我又为警界立了一功！！
-							</div>
-						</li>
-						<li>
-							<div class="doSomethingTitle">
-								<span class="Something">评论了文章</span>
-								<span class="timeOfDoSomething">2111-1-1</span>
-							</div>	
-							<div class="doSomethingContent">
-								卧底界不能说的秘密！
-							</div>
-						</li>
-						<li>
-							<div class="doSomethingTitle">
-								<span class="Something">收藏了文章</span>
-								<span class="timeOfDoSomething">2001-1-1</span>
-							</div>	
-							<div class="doSomethingContent">
-								如何成为一个优秀的卧底！
-							</div>
-						</li>
+					<ul id="postList">
+						
 					</ul>
 				</div>
 				<div class="likeList"></div>
@@ -197,7 +166,7 @@
 			<input id="returnMainButton" type="button" value="返回主页">
 		</div>
 		<div class="otherArea">
-			<div class="noticeArea">
+			<div id="notice" class="noticeArea">
 				<p class="noticeTitle">新人必看</p>
 				<div class="noticeBody">
 					新人必须遵守的一些相关事项

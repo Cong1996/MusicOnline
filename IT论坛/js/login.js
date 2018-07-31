@@ -339,10 +339,9 @@ initAlert('navLoginButton');/*加载登录框*/
 		document.getElementById('navItemUser').classList.remove('disappear');
 		document.getElementById('alertArea').style.display="none";
 		fixedTool.classList.remove('disappear');
+		document.getElementById('navItemPerson').href="personal.html?"+nowUserId;
 		getUserPhoto();
 	};
 	loadAddEvent();
-
-	
 })();
 	

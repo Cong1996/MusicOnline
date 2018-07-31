@@ -444,6 +444,8 @@ function getArticleContent(){
 				document.getElementById('articleTitle').innerHTML=JSON.parse(xhr.responseText)['note']['note_title'];
 				getPosterMessage(JSON.parse(xhr.responseText)['note']['poster_id']);
 				showCommont(JSON.parse(xhr.responseText)['comment']);
+				document.getElementById('posterLink').href="personal.html?"+JSON.parse(xhr.responseText)['note']['poster_id'];
+				document.getElementById('authorLink').href="personal.html?"+JSON.parse(xhr.responseText)['note']['poster_id'];
 			}
 		}
 	}
