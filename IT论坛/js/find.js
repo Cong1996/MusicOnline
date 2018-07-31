@@ -120,3 +120,21 @@ function getAnnouncementContent(note_id,title){
 		}
 	}
 }
+/*搜素*/
+searchButton.addEventListener('click',function(){
+	let searchValue=document.getElementById('searchNote').value;
+	searchNote(searchValue);
+});
+function searchNote(value){
+	let xhr=new XMLHttpRequest();
+	xhr.open('post','http://202.116.162.57:8080/se52/note/findByTitle.do',true);
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send('note_title='+value);
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				showNewArticleAll(JSON.parse(xhr.responseText)['list']);
+			}
+		}
+	}
+}

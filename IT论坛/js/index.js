@@ -92,7 +92,6 @@ getHotArticleAll();
 			if(xhr.status==200){
 				let array=JSON.parse(xhr.responseText)['list'],
 				i=array.length-1;
-								console.log(array)
 				getAnnouncementContent(array[i]['note_id'],array[i]['note_title']);
 			}
 		}
@@ -115,6 +114,25 @@ function getAnnouncementContent(note_id,title){
 						<a class="noticeMore">往期公告>></a>
 					`;
 				document.getElementById('notice').innerHTML=li;
+			}
+		}
+	}
+}
+
+/*搜素*/
+searchButton.addEventListener('click',function(){
+	let searchValue=document.getElementById('searchNote').value;
+	searchNote(searchValue);
+});
+function searchNote(value){
+	let xhr=new XMLHttpRequest();
+	xhr.open('post','http://202.116.162.57:8080/se52/note/findByTitle.do',true);
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send('note_title='+value);
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				showHotArticleAll(JSON.parse(xhr.responseText)['list']);
 			}
 		}
 	}

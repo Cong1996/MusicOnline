@@ -38,6 +38,7 @@ header span{
 	float:right;
 	margin-right:20px;
 	font-size:18px;
+	cursor:pointer;
 }
 header span i{
 	margin-left:10px;
@@ -100,6 +101,7 @@ header span i{
 	margin:10px 0;
 	text-align: center;
 	border:1px solid #eee;
+	cursor:pointer;
 }
 .selectType>li:hover,
 .selectType .active{
@@ -238,6 +240,7 @@ input[type='text']{
 	margin:10px 0;
 	text-align: center;
 	border:1px solid #eee;
+	cursor:pointer;
 }
 .selectType>li:hover,
 .selectType .active{
