@@ -1,34 +1,37 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <style type="text/css">
-     span{
-     	line-height: 1.5;
-     	font-size:40px;
-     }
-     input:checked{
-     	font-size:180px;
-     }
-    </style>
-    <script src="jquery-1.7.2.min.js"></script>
+<html >
+<head>
+    <title>The jit RegEx Machine</title>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css"></style>
+    <link rel="stylesheet" type="text/css" href="">
+    <script type="text/javascript">
+        
+//^\d{2}\/\d{2}\/\d{4}
+    function validateField(evnt){
+        console.log("aaa");
+        // var rgEx=new RegExp(document.getElementById("someForm").text1.value);
+        // var ok=rgEx.exec(document.getElementById("someForm").text2.value);
+        if(!ok){
+            // document.getElementById("someForm").text3.value="Not a match";
+        }
+        else{
+        // document.getElementById("someForm").text3.value="The pattern matched";  
+        }
+        return false;
+    }
+    </script>
+
+
 </head>
-<body>
-<input type="checkbox" value="hello" checked>
-<input type="checkbox" value="hello">
-<script>
- function Person(){
-
- }
- let friend=new Person();
- Person.prototype={
-  say:function(){
-    console.log('ok');
-  }
- }
-
- friend.say();
-</script>
+<body >
+    <form id="someForm" style="padding: 10px" >
+        Regular Expression:
+            <input type="text"  name="text1" /><br/><br/>
+            <input name="text2"  cols=50 rows=10 /><br>
+            Result：<input type="text" name="text3" /><br/><br/>
+            
+            <button id="btn" onclick="validateField" >提交按钮</button> 
+    </form>
 </body>
 </html>

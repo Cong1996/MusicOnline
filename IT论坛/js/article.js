@@ -350,11 +350,15 @@ function getTime(time){/*接受字符串或对象，返回与当前时间差*/
 	else{
 		theDate=new Date(time);
 	}
+		console.log(theDate);
 	let	theYear=theDate.getFullYear(),
 		theMonth=theDate.getMonth()+1,
 		theDay=theDate.getDate(),
 		theHour=theDate.getHours(),
 		theMinute=theDate.getMinutes();
+	// str=`theYear=${theYear},theMonth=${theMonth},theDay=${theDay},theHour=${theHour},
+	// theMinute=${theMinute}`;	
+	// console.log(str);
 	/*服务器当前时间*/
 	let date = new Date(),
 		nowYear=date.getFullYear(),
@@ -362,6 +366,9 @@ function getTime(time){/*接受字符串或对象，返回与当前时间差*/
 		nowDay=date.getDate(),
 		nowHour=date.getHours(),
 		nowMinute=date.getMinutes();
+	// str=`nowYear=${nowYear},nowMonth=${nowMonth},nowDay=${nowDay},nowHour=${nowHour},
+	// nowMinute=${nowMinute}`;	
+	// console.log(str);
 	if(nowYear-theYear>=1){
 		return nowYear-theYear+'年前';
 	}
@@ -380,6 +387,10 @@ function getTime(time){/*接受字符串或对象，返回与当前时间差*/
 	else if(nowMinute-theMinute>=1){
 		return nowMinute-theMinute+'分钟前';
 	}
+	else{
+		return '刚刚';
+	}
+
 }
 /*展示评论*/
 function showCommont(commontArray){
@@ -395,7 +406,7 @@ function showCommont(commontArray){
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4){
 				if(xhr.status==200){
-				i['content']= decodeURIComponent(i['content']);
+				i['content']= i['content'];
 					let time=getTime(i['create_time']);
 					str=`
 						<li>
@@ -427,8 +438,7 @@ function getArticleContent(){
 	xhr.onreadystatechange=function(){
 		if(xhr.readyState==4){
 			if(xhr.status==200){
-				let str=JSON.parse(xhr.responseText)['content'].replace(/\#11111\#/g,"&");
-					 str=str.replace(/\*00000\*/g,"%");
+				let str=JSON.parse(xhr.responseText)['content'];
 				document.getElementById('articleContent').innerHTML=str;
 				document.getElementById('articleCreateTime').innerHTML=JSON.parse(xhr.responseText)['note']['create_time'];
 				document.getElementById('articleTitle').innerHTML=JSON.parse(xhr.responseText)['note']['note_title'];
@@ -446,8 +456,7 @@ function sendCommontXhr(content,noteid,user_id,user_name){
 	let xhr=new XMLHttpRequest();
 	xhr.open('post','http://202.116.162.57:8080/se52/addComment.do',true);
 	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	content=content.replace(/\&/g,"#11111#");
-	content=content.replace(/\%/g,"*00000*");
+	content=encodeURIComponent(content);
 	let data=`content=${content}&noteid=${noteid}&user_id=${user_id}&user_name=${user_name}`;
 	xhr.send(data);
 	xhr.onreadystatechange=function(){

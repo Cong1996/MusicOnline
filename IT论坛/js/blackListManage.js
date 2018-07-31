@@ -26,7 +26,6 @@ function showALLBlackList(array){
 					<span>
 						<span class="manage-button-area">
 							<input name="${array[i]['user_id']}" class="editButton" type="button" value="恢复"  onclick="recoverUser('${array[i]['user_id']}')">
-							<input name="}" class="deleteButton" type="button" value="删除">
 						</span>						
 					</span>
 				</li>	
@@ -46,7 +45,7 @@ function recoverUser(user_id){
 		if(xhr.readyState==4){
 			if(xhr.status==200){
 				if(JSON.parse(xhr.responseText)['message']=="删除成功"){
-					coolAlert('恢复成功');
+					window.location.href="";
 				}
 				else{
 					coolAlert('操作失败');

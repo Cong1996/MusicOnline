@@ -6,8 +6,8 @@ var canvas = document.getElementById('canvas'),
 			"#FF99CC","#993399"];
 			~~function getsize(){
 			window.onresize = arguments.callee;
-			w=window.innerWidth;
-			h=window.innerHeight;
+			w=window.innerWidth/2;
+			h=window.innerHeight/2;
 			canvas.width=w;
 			canvas.height=h;
 			}();

@@ -330,8 +330,8 @@ function loadAddEvent(){
 	});
 
 }
-
-	initAlert('navLoginButton');/*加载登录框*/
+~~(function(){
+initAlert('navLoginButton');/*加载登录框*/
 	let nowUserId=localStorage.getItem('nowUserId'),
 		fixedTool=document.getElementById('fixedTool');
 	if(nowUserId){
@@ -342,3 +342,7 @@ function loadAddEvent(){
 		getUserPhoto();
 	};
 	loadAddEvent();
+
+	
+})();
+	

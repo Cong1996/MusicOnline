@@ -1,3 +1,7 @@
+.disappear{
+	display: none;
+}
+
 /*用户模糊搜索*/
 .user-search{
 	height:30px;
@@ -63,4 +67,53 @@ input[type="button"]:active{
 }
 .user-table li:nth-child(odd){
 	background-color:rgb(240,240,240);
+}
+.enterResultArea{
+	position: fixed;
+	top:0;
+	bottom: 0;
+	width: 100%;
+	background: rgba(0,0,0,.5);
+}
+.enterResult{
+	position: fixed;
+	top:100px;
+	left:50%;
+	width: 100%;
+	max-width: 400px;
+	transform:translateX(-50%);
+	background-color: #fff;
+	padding: 10px;
+	font-size: 0;
+	border-radius: 10px;
+}
+.enterResult>h3{
+	text-align: center;
+	color:rgb(0,108,255);
+	font-size:20px;
+}
+.enterResult>input[type="text"]{
+	width: 100%;
+	box-sizing: border-box;
+	margin:10px 0;
+	height: 50px;
+	font-size:18px;
+}
+#submitButton{
+	margin:20px 0;
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	background-color: rgb(0,108,255);
+	color:#fff;
+	height: 40px;
+}
+#cancelButton{
+	margin:20px 0;
+	display: inline-block;
+	width: 50%;
+	background-color: #fff;
+	color:rgb(0,108,255)
+	border:1px solid rgb(0,108,255);
+	height: 40px;
 }

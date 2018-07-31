@@ -22,8 +22,8 @@
 					<span class="fa fa-user"></span>
 				</div>
 				<div class="data">
-					<span class="dataNumber">120</span>
-					<span class="dataDescription">新用户</span>
+					<span id="userNumber" class="dataNumber">120</span>
+					<span class="dataDescription">用户数</span>
 				</div>
 			</div>
 			<div class="dataShow">
@@ -31,7 +31,7 @@
 					<span class="fa fa-bar-chart"></span>
 				</div>
 				<div class="data">
-					<span class="dataNumber">9999</span>
+					<span id="visitorNumber" class="dataNumber">9999</span>
 					<span class="dataDescription">访问量</span>
 				</div>
 			</div>
@@ -40,7 +40,7 @@
 					<span class="fa fa-file-text-o"></span>
 				</div>
 				<div class="data">
-					<span class="dataNumber">120</span>
+					<span id="noteNumber" class="dataNumber">120</span>
 					<span class="dataDescription">帖子数</span>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 					<span class="fa fa-user-secret"></span>
 				</div>
 				<div class="data">
-					<span class="dataNumber">120</span>
+					<span id="blackListNumber" class="dataNumber">120</span>
 					<span class="dataDescription">黑名单数量</span>
 				</div>
 			</div>
@@ -92,7 +92,7 @@
 				<span class="rootName">公告管理</span>
 			</li>
 			</a>
-			<a href="backlogin.html">
+			<a id="returnToLogin">
 			<li>
 				<span class="rootIcon fa fa-sign-out"></span>
 				<span class="rootName">返回登录</span>
@@ -111,7 +111,7 @@
 					<li>
 						<span class="fa fa-gear">设置</span>
 					</li>
-					<li>
+					<li id="signOut">
 						<span class="fa fa-sign-out">退出</span>
 					</li>
 				</ul>
@@ -119,7 +119,7 @@
 		</div>
 
 	</div>
-	<script src="../js/canvasDraw.js"></script>
+	<script src="../js/canvas.js"></script>
 	<script src="../js/root.js"></script>
 </body>
 </html>
