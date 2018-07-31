@@ -1,4 +1,4 @@
-let blackListArray=[];
+
 ~~(function getAllBlackList(){
 	var xhr=new XMLHttpRequest();
 	xhr.open('post','http://202.116.162.57:8080/se52/blacklist/findall.do',true);
@@ -13,8 +13,7 @@ let blackListArray=[];
 })();
 function showALLBlackList(array){
 	let str="",
-		blackList=document.getElementById('blackList'),
-		blackListArray=array;
+		blackList=document.getElementById('blackList');
 	for(let i in array){
 		str+=`
 				<li>

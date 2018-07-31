@@ -280,35 +280,7 @@ function getUserLikeList(){
 	xhr.onreadystatechange=function(){
 		if(xhr.readyState==4){
 			if(xhr.status==200){
-				let str='',array=JSON.parse(xhr.responseText)['collections']
-				for(let i in array){
-					str+=`
-						<li>
-									<div class="doSomethingTitle">
-											<span class="Something">收藏了文章</span>
-											<span class="timeOfDoSomething"></span>
-									</div>	
-									<div class="doSomethingContent">
-										<a href="article.html?${array[i]['noteinfo_note_id']}">文章id=${array[i]['noteinfo_note_id']}</a>
-									</div>
-						</li>
-						`
-				}
-				if(array.length==0){
-					str=`
-						<li>
-							<div class="doSomethingTitle">
-											<span class="Something">发布了文章</span>
-											<span class="timeOfDoSomething"></span>
-									</div>	
-									<div class="doSomethingContent">
-										<a>暂无</a>
-									</div>
-						</li>
-						`;
-				}
-				document.getElementById('postList').innerHTML=str;
-
+				showNoteList(JSON.parse(xhr.responseText)['collectedNote'],'收藏');
 			}
 		}
 	}

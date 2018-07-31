@@ -1,3 +1,7 @@
+
+let userSearchButton=document.getElementById('userSearchButton'),
+	userSearch=document.getElementById('userSearch');
+
 ~~(function getAllUser(){
 	let xhr=new XMLHttpRequest();
 	xhr.open('post','http://202.116.162.57:8080/se52/findWhiteUser.do',true);
@@ -29,6 +33,12 @@ function showAllUser(userList){
 					</li>
 			`;
 		}
+	}
+	if(userList.length==0){
+		str=`<li style="display:block;text-align:center">
+						查询不到相关用户
+					</li>
+				`;
 	}
 	document.getElementById('userList').innerHTML=str;
 }
@@ -73,6 +83,29 @@ function laheiUserXhr(user_id){
 				else{
 					coolAlert('拉黑失败');
 				}
+			}
+		}
+	}
+}
+userSearchButton.addEventListener('click',function(){
+	let value=userSearch.value;
+	if(value==''){
+		coolAlert('骚年输入点东西吧');
+		return false;
+	}
+	searchUser(value);
+
+});
+//查找用户
+function searchUser(value){
+	let xhr=new XMLHttpRequest();
+	xhr.open('post','http://202.116.162.57:8080/se52/searchUser.do',true);
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send('username='+value);
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				showAllUser(JSON.parse(xhr.responseText)['userlist']);
 			}
 		}
 	}
