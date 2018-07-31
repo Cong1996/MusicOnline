@@ -96,6 +96,7 @@ button:active{
 	color:#fff;
 	font-size: 25px;
 	margin-right: 50px;
+	cursor:pointer;
 }
 /*用户菜单*/
 .userMenu{
@@ -115,6 +116,7 @@ button:active{
 .userMenu li{
 	line-height: 25px;
 	padding-left: 10px;
+	cursor: pointer;
 }
 .userMenu li:hover{
 	background-color:#eee;
@@ -134,6 +136,7 @@ button:active{
 	padding:20px;
 	font-size: 0;
 	border-bottom: 1px solid #eee;
+	
 }
 input[type="text"]{
 	width: 100%;

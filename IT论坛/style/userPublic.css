@@ -161,6 +161,7 @@ header{
 		color:#fff;
 		font-weight: 700;
 		border-radius: 4px;
+		cursor:pointer;
 	}
 	.ios{
 	background-color: rgb(255,149,91);

@@ -1,3 +1,6 @@
+#noteNavList>li{
+		cursor:pointer;
+	}
 #file{
 	position: absolute;
 	top:0;

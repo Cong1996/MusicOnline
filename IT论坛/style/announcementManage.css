@@ -134,6 +134,10 @@
 }
 .deleteButton{
 	background-color:transparent;
+
+}
+.deletebutton{
+		cursor:pointer;
 }
 .old-announcement-button span:hover{
 	color:#999;

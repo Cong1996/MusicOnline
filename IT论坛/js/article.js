@@ -2,7 +2,8 @@
 let emailCodeNumber,/*登记邮箱验证码*/
 commontButton=document.getElementById('commontButton'),
 userId,
-userName;
+userName,
+note_id=window.location.href.split('?')[1].split('#')[0];
 /*登录框初始化*/
 function initAlert(loginButtonId){
 	document.body.innerHTML+=`
@@ -350,7 +351,6 @@ function getTime(time){/*接受字符串或对象，返回与当前时间差*/
 	else{
 		theDate=new Date(time);
 	}
-		console.log(theDate);
 	let	theYear=theDate.getFullYear(),
 		theMonth=theDate.getMonth()+1,
 		theDay=theDate.getDate(),
@@ -446,6 +446,7 @@ function getArticleContent(){
 				showCommont(JSON.parse(xhr.responseText)['comment']);
 				document.getElementById('posterLink').href="personal.html?"+JSON.parse(xhr.responseText)['note']['poster_id'];
 				document.getElementById('authorLink').href="personal.html?"+JSON.parse(xhr.responseText)['note']['poster_id'];
+				getCollection();
 			}
 		}
 	}
@@ -498,6 +499,9 @@ function loadAddEvent(){
 		case 'signOut':
 			delete localStorage.nowUserId;
 			window.location.href="";
+			break;
+		case 'like':
+			break;
 	}
 	});
 	let yourCommont=document.getElementById('yourCommont'),
@@ -509,6 +513,64 @@ function loadAddEvent(){
 	yourCommont.onblur=changeHeight;
 
 }
+
+/*收藏*/
+function likeNote(){
+	let xhr=new XMLHttpRequest();
+	xhr.open('post','http://202.116.162.57:8080/se52/user/addCollection.do',true);
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send('userinfo_user_id='+localStorage.nowUserId+'&noteinfo_note_id='+note_id);
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				if(JSON.parse(xhr.responseText)['addCollection']=="添加收藏成功!"){
+					document.getElementById('like').onclick=dislikeNote;
+					document.getElementById('like').classList.remove('fa-star-o');
+					document.getElementById('like').classList.add('fa-star');
+
+				}
+				else{
+					
+				}
+			}
+		}
+	}
+}
+function dislikeNote(){
+	let xhr=new XMLHttpRequest();
+	xhr.open('post','http://202.116.162.57:8080/se52/user/deleteCollection.do',true);
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send('userinfo_user_id='+localStorage.nowUserId+'&noteinfo_note_id='+note_id);
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				if(JSON.parse(xhr.responseText)['addCollection']=="删除收藏成功!"){
+				document.getElementById('like').onclick=likeNote;
+				document.getElementById('like').classList.remove('fa-star');
+				document.getElementById('like').classList.add('fa-star-o');
+				}
+			}
+		}
+	}
+}
+function getCollection(){
+	let xhr=new XMLHttpRequest();
+	xhr.open('post','http://202.116.162.57:8080/se52/user/showCollection.do',true);
+	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+	xhr.send('user_id='+localStorage.nowUserId);
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				let array=JSON.parse(xhr.responseText)["collections"];
+				for(var i in array){
+					if(array[i]["noteinfo_note_id"]==note_id){
+						document.getElementById('like').onclick=dislikeNote;
+					}
+				}
+			}
+		}
+	}
+}
 window.onload=function(){
 	initAlert('navLoginButton');/*加载登录框*/
 	let nowUserId=localStorage.getItem('nowUserId'),
@@ -518,6 +580,7 @@ window.onload=function(){
 		document.getElementById('navItemUser').classList.remove('disappear');
 		document.getElementById('alertArea').style.display="none";
 		fixedTool.classList.remove('disappear');
+		document.getElementById('like').onclick=likeNote;
 		getUserPhoto();
 	};
 	loadAddEvent();
