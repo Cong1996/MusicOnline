@@ -6,6 +6,7 @@ let editButton=document.getElementById('editMessageButton'),
 	userJson;
 editButton.onclick=disappear;
 returnMainButton.onclick=disappear;
+console.log(window.location);
 /*切换信息区域*/
 function disappear(){
 	personalArea.classList.toggle('disappear');
