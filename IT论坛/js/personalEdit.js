@@ -6,7 +6,6 @@ let editButton=document.getElementById('editMessageButton'),
 	userJson;
 editButton.onclick=disappear;
 returnMainButton.onclick=disappear;
-console.log(window.location);
 /*切换信息区域*/
 function disappear(){
 	personalArea.classList.toggle('disappear');
@@ -210,6 +209,15 @@ function getAnnouncementContent(note_id,title){
 		}
 	}
 }
+/*发送私信*/
+function sendMessage(){
+	if(!localStorage.nowUserId){
+		coolAlert('请先登录');
+		return false;
+	}
+
+}
+
 
 ~~(function(){
 	let user_id=window.location.href.split('?')[1];
@@ -218,8 +226,10 @@ function getAnnouncementContent(note_id,title){
 	}
 	user_id=user_id.split('#')[0];
 	if(user_id!=localStorage.nowUserId){
-		editMessageButton.style.display="none";
-		
+		let sendMessageButton=document.getElementById('sendMessageButton');
+		editMessageButton.classList.add('disappear');
+		sendMessageButton.classList.remove('disappear');
+		sendMessageButton.addEventListener('click',sendMessage);
 	}
 	if(localStorage.nowUserId){
 		let xhr=new XMLHttpRequest();

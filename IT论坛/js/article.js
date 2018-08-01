@@ -3,7 +3,7 @@ let emailCodeNumber,/*登记邮箱验证码*/
 commontButton=document.getElementById('commontButton'),
 userId,
 userName,
-note_id=window.location.href.split('?')[1].split('#')[0];
+note_id;
 /*登录框初始化*/
 function initAlert(loginButtonId){
 	document.body.innerHTML+=`
@@ -524,7 +524,6 @@ function likeNote(){
 	xhr.onreadystatechange=function(){
 		if(xhr.readyState==4){
 			if(xhr.status==200){
-				
 				if(JSON.parse(xhr.responseText)['addCollection']=="添加收藏成功!"){
 					document.getElementById('like').onclick=dislikeNote;
 					document.getElementById('like').classList.remove('fa-star-o');
@@ -537,7 +536,6 @@ function likeNote(){
 	}
 }
 function dislikeNote(){
-
 	let xhr=new XMLHttpRequest();
 	xhr.open('post','http://202.116.162.57:8080/se52/user/deleteCollection.do',true);
 	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
@@ -565,17 +563,21 @@ function getCollection(){
 			if(xhr.status==200){
 				let array=JSON.parse(xhr.responseText)["collectedNote"];
 				for(let i in array){
-					if(array[i]["note_id"]==note_id){
+					if(array[i]["note_id"]==note_id){			
 						document.getElementById('like').onclick=dislikeNote;
 						document.getElementById('like').classList.remove('fa-star-o');
-					document.getElementById('like').classList.add('fa-star');
+						document.getElementById('like').classList.add('fa-star');
 					}
 				}
 			}
 		}
 	}
 }
-window.onload=function(){
+~~(function(){
+	if(window.location.search==''){
+		window.location.href='index.html';
+	}
+	note_id=window.location.href.split('?')[1].split('#')[0];
 	initAlert('navLoginButton');/*加载登录框*/
 	let nowUserId=localStorage.getItem('nowUserId'),
 		fixedTool=document.getElementById('fixedTool');
@@ -589,4 +591,4 @@ window.onload=function(){
 	};
 	loadAddEvent();
 	getArticleContent();
-}
+})();
